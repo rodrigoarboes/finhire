@@ -63,8 +63,7 @@ img{max-width:100%;display:block}
   width:40px;height:40px;border-radius:11px;background:linear-gradient(160deg,#1B1B24,#09090C);
   border:1px solid var(--line);font-style:italic;font-weight:900;font-size:20px;letter-spacing:-.07em;
   box-shadow:0 4px 14px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)}
-.fh-badge .f{background:var(--gold-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
-.fh-badge .h{background:var(--violet-metal);-webkit-background-clip:text;background-clip:text;color:transparent;margin-left:-1px}
+.fh-ico{width:23px;height:auto;display:block}
 .wordmark{display:inline-block;font-weight:800;font-size:21px;letter-spacing:-.02em;line-height:1.05}
 .wordmark .fin{color:var(--white)}
 .wordmark .hire{background:var(--violet-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -111,11 +110,9 @@ img{max-width:100%;display:block}
 .hero-trust{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px 26px;font-size:13px;color:var(--muted-2)}
 .hero-trust span{display:inline-flex;align-items:center;gap:8px}
 .dot{width:5px;height:5px;border-radius:50%;background:var(--gold)}
-.hero-mark{position:absolute;top:-4%;right:-6%;z-index:1;font-style:italic;font-weight:900;
-  font-size:clamp(280px,46vw,560px);line-height:.8;letter-spacing:-.08em;opacity:.05;pointer-events:none;
-  user-select:none;white-space:nowrap}
-.hero-mark .f{background:var(--gold-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero-mark .h{background:var(--violet-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-mark{position:absolute;top:4%;right:-4%;z-index:1;width:clamp(300px,46vw,580px);opacity:.07;
+  pointer-events:none;user-select:none}
+.hero-mark svg{width:100%;height:auto;display:block}
 
 /* ===== stats band ===== */
 .statband{padding:0 0 clamp(20px,4vw,40px);background:var(--bg)}
@@ -269,11 +266,25 @@ footer{border-top:1px solid var(--line);padding:54px 0 60px;color:var(--muted-2)
 </head>
 <body>
 
+<!-- FH monogram sprite (flat — legível em qualquer tamanho) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="fh" viewBox="0 0 118 104">
+    <g transform="translate(11,0) skewX(-7)">
+      <rect x="10" y="14" width="15" height="76" rx="1.5" fill="#E0C074"/>
+      <rect x="10" y="14" width="31" height="15" rx="1.5" fill="#E0C074"/>
+      <rect x="10" y="47" width="30" height="15" rx="1.5" fill="#E0C074"/>
+      <rect x="44" y="14" width="15" height="76" rx="1.5" fill="#8B7CF5"/>
+      <rect x="84" y="14" width="15" height="76" rx="1.5" fill="#8B7CF5"/>
+      <rect x="44" y="47" width="55" height="15" rx="1.5" fill="#8B7CF5"/>
+    </g>
+  </symbol>
+</svg>
+
 <!-- ===================== NAV ===================== -->
 <nav class="nav" id="nav">
   <div class="wrap nav-in">
     <a href="#top" class="brand" aria-label="FinHire — início">
-      <span class="fh-badge" aria-hidden="true"><span class="f">F</span><span class="h">H</span></span>
+      <span class="fh-badge" aria-hidden="true"><svg class="fh-ico"><use href="#fh"/></svg></span>
       <span class="wordmark"><span class="fin">Fin</span><span class="hire">Hire</span>
         <span class="brand-sub">Recrutamento e Seleção</span>
       </span>
@@ -294,7 +305,7 @@ footer{border-top:1px solid var(--line);padding:54px 0 60px;color:var(--muted-2)
 
 <!-- ===================== HERO ===================== -->
 <header class="hero">
-  <div class="hero-mark" aria-hidden="true"><span class="f">F</span><span class="h">H</span></div>
+  <div class="hero-mark" aria-hidden="true"><svg viewBox="0 0 118 104"><use href="#fh"/></svg></div>
   <div class="wrap">
     <span class="eyebrow reveal">Recrutamento Especializado · Mercado Financeiro</span>
     <h1 class="reveal">Talentos certos para o <span class="fh-text">mercado financeiro</span>.</h1>
@@ -541,7 +552,7 @@ footer{border-top:1px solid var(--line);padding:54px 0 60px;color:var(--muted-2)
     <div class="foot-in">
       <div class="foot-brand">
         <a href="#top" class="brand" aria-label="FinHire">
-          <span class="fh-badge" aria-hidden="true"><span class="f">F</span><span class="h">H</span></span>
+          <span class="fh-badge" aria-hidden="true"><svg class="fh-ico"><use href="#fh"/></svg></span>
           <span class="wordmark"><span class="fin">Fin</span><span class="hire">Hire</span>
             <span class="brand-sub">Recrutamento e Seleção</span>
           </span>

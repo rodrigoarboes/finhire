@@ -1,17 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FinHire">
-  <defs>
-    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#F4D793"/>
-      <stop offset="1" stop-color="#B5872F"/>
-    </linearGradient>
-    <linearGradient id="violet" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#C4BDFB"/>
-      <stop offset="1" stop-color="#5B53C4"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="15" fill="#0A0A0D"/>
-  <g font-family="Montserrat, Arial, sans-serif" font-weight="900" font-size="36" font-style="italic" letter-spacing="-3">
-    <text x="9" y="45" fill="url(#gold)">F</text>
-    <text x="30" y="45" fill="url(#violet)">H</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="FinHire">
+  <rect width="128" height="128" rx="28" fill="#0C0E13"/>
+  <g transform="translate(11,21) scale(0.82)">
+    <g transform="translate(11,0) skewX(-7)">
+      <rect x="10" y="14" width="15" height="76" rx="1.5" fill="#E0C074"/>
+      <rect x="10" y="14" width="31" height="15" rx="1.5" fill="#E0C074"/>
+      <rect x="10" y="47" width="30" height="15" rx="1.5" fill="#E0C074"/>
+      <rect x="44" y="14" width="15" height="76" rx="1.5" fill="#8B7CF5"/>
+      <rect x="84" y="14" width="15" height="76" rx="1.5" fill="#8B7CF5"/>
+      <rect x="44" y="47" width="55" height="15" rx="1.5" fill="#8B7CF5"/>
+    </g>
   </g>
 </svg>
