@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinHire — Recrutamento e Seleção para o Mercado Financeiro</title>
+<meta name="description" content="A FinHire conecta bancos, corretoras, asset managers e escritórios de assessoria aos profissionais certos — com triagem técnica de verdade e pipeline contínuo de talentos certificados.">
+
+<!-- favicon (placeholder SVG — trocar pela arte final da marca) -->
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="theme-color" content="#08080A">
+
+<!-- social / Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="FinHire — Recrutamento e Seleção para o Mercado Financeiro">
+<meta property="og:description" content="O talento certo, antes de você abrir a vaga. Recrutamento especializado para o mercado financeiro.">
+<meta property="og:image" content="assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FINHIRE — Recrutamento & Seleção · Mercado Financeiro
+   Brand: ouro (F) = autoridade/mercado · violeta (H) = pessoas/match
+   Mesma pegada das logos FH. Fundo preto, acabamento metálico.
+   (paleta provisória no feeling — trocar pelos tokens finais)
+   ============================================================ */
+:root{
+  --bg:#08080A; --bg-2:#0C0C10; --surface:#15151B; --surface-2:#1C1C24;
+  --white:#FFFFFF; --muted:#A6A8B3; --muted-2:#74757F;
+  --violet:#7C74E6; --violet-hi:#A8A1F7; --violet-lo:#4A44A6;
+  --gold:#D6A848; --gold-hi:#F0CE84; --gold-lo:#7E5E28;
+  --steel:#7E7E86;
+  --line:rgba(255,255,255,.08);
+  --line-gold:rgba(214,168,72,.28);
+  --line-violet:rgba(124,116,230,.32);
+  --gold-metal:linear-gradient(180deg,#F4D793 0%,#EAC472 30%,#D6A848 58%,#9A7B38 100%);
+  --violet-metal:linear-gradient(180deg,#C4BDFB 0%,#9B92F4 32%,#7C74E6 60%,#4A44A6 100%);
+  --fh-grad:linear-gradient(100deg,#EAC472 0%,#D6A848 34%,#8B82F0 64%,#7C74E6 100%);
+  --gold-btn:linear-gradient(180deg,#EFC972 0%,#D6A848 60%,#B5872F 100%);
+  --violet-btn:linear-gradient(180deg,#8E86EE 0%,#7C74E6 60%,#5B53C4 100%);
+  --maxw:1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--white);
+  font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.metal{background:var(--gold-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.violet-text{background:var(--violet-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fh-text{background:var(--fh-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ===== brand mark (CSS — placeholder até a arte final) ===== */
+.brand{display:inline-flex;align-items:center;gap:12px}
+.fh-badge{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:11px;background:linear-gradient(160deg,#1B1B24,#09090C);
+  border:1px solid var(--line);font-style:italic;font-weight:900;font-size:20px;letter-spacing:-.07em;
+  box-shadow:0 4px 14px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)}
+.fh-badge .f{background:var(--gold-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fh-badge .h{background:var(--violet-metal);-webkit-background-clip:text;background-clip:text;color:transparent;margin-left:-1px}
+.wordmark{display:inline-block;font-weight:800;font-size:21px;letter-spacing:-.02em;line-height:1.05}
+.wordmark .fin{color:var(--white)}
+.wordmark .hire{background:var(--violet-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand-sub{display:block;font-size:8.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--gold);margin-top:3px}
+
+/* eyebrow */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-weight:800;letter-spacing:.05em;text-transform:uppercase;font-size:14px;
+  padding:17px 30px;border-radius:8px;cursor:pointer;border:1px solid transparent;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease}
+.btn-gold{background:var(--gold-btn);color:#1A1408;box-shadow:0 6px 22px rgba(214,168,72,.22)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(214,168,72,.34)}
+.btn-violet{background:var(--violet-btn);color:#fff;box-shadow:0 6px 22px rgba(124,116,230,.26)}
+.btn-violet:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(124,116,230,.4)}
+.btn-ghost{background:transparent;border:1px solid var(--line-violet);color:var(--violet-hi)}
+.btn-ghost:hover{border-color:var(--violet);background:rgba(124,116,230,.08)}
+.btn:focus-visible{outline:2px solid var(--violet-hi);outline-offset:3px}
+
+/* ===== NAV ===== */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);
+  background:rgba(8,8,10,.55);border-bottom:1px solid transparent;transition:.3s}
+.nav.scrolled{background:rgba(8,8,10,.92);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.nav .btn{padding:11px 20px;font-size:12px}
+.nav-cta-wrap{display:flex;align-items:center;gap:18px}
+.nav-links{display:flex;gap:26px;font-size:13px;font-weight:600;color:var(--muted)}
+.nav-links a:hover{color:var(--white)}
+
+/* ===== HERO ===== */
+.hero{position:relative;padding:clamp(70px,11vw,140px) 0 clamp(60px,8vw,100px);overflow:hidden;
+  background:radial-gradient(110% 80% at 80% 8%, rgba(124,116,230,.14), transparent 55%),
+             radial-gradient(90% 70% at 8% 100%, rgba(214,168,72,.10), transparent 60%),var(--bg)}
+.hero .wrap{position:relative;z-index:2}
+.hero h1{font-weight:900;font-size:clamp(40px,7vw,76px);line-height:1.02;letter-spacing:-.025em;max-width:15ch}
+.hero .sub{margin-top:26px;font-size:clamp(17px,2.1vw,21px);color:var(--muted);max-width:56ch;font-weight:400}
+.hero .sub b{color:var(--white);font-weight:600}
+.hero-cta{margin-top:40px;display:flex;flex-wrap:wrap;gap:16px}
+.hero-trust{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px 26px;font-size:13px;color:var(--muted-2)}
+.hero-trust span{display:inline-flex;align-items:center;gap:8px}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.hero-mark{position:absolute;top:-4%;right:-6%;z-index:1;font-style:italic;font-weight:900;
+  font-size:clamp(280px,46vw,560px);line-height:.8;letter-spacing:-.08em;opacity:.05;pointer-events:none;
+  user-select:none;white-space:nowrap}
+.hero-mark .f{background:var(--gold-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-mark .h{background:var(--violet-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ===== generic section ===== */
+.section{padding:clamp(64px,9vw,118px) 0;position:relative}
+.section.alt{background:linear-gradient(180deg,var(--bg-2),var(--bg))}
+.s-head{max-width:62ch}
+.s-head h2{font-weight:800;font-size:clamp(28px,4.2vw,46px);line-height:1.08;letter-spacing:-.02em}
+.s-head p{margin-top:18px;color:var(--muted);font-size:17px;font-weight:400;max-width:54ch}
+.rule-gold{width:46px;height:3px;background:var(--gold-metal);border-radius:2px;margin-bottom:30px}
+
+/* problem list */
+.pain{margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.pain .item{background:var(--bg);padding:30px 28px}
+.pain .item .x{color:var(--violet-hi);font-weight:800;font-size:14px;letter-spacing:.01em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.pain .item p{color:var(--muted);font-size:15.5px}
+.pain .item strong{color:var(--white);font-weight:600}
+
+/* mechanism / pillars */
+.pillars{margin-top:50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.pillar{background:var(--surface);border:1px solid var(--line);border-top:2px solid var(--gold);
+  border-radius:12px;padding:32px 28px}
+.pillar h3{font-weight:800;font-size:20px;margin-bottom:12px}
+.pillar p{color:var(--muted);font-size:15px}
+
+/* services grid */
+.modules{margin-top:50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.mod{background:linear-gradient(180deg,var(--surface),var(--bg));border:1px solid var(--line);
+  border-radius:12px;padding:28px 26px;transition:border-color .25s,transform .25s}
+.mod:hover{border-color:var(--line-violet);transform:translateY(-3px)}
+.mod .k{font-weight:900;font-size:13px;letter-spacing:.04em;color:var(--gold);margin-bottom:14px}
+.mod h4{font-weight:700;font-size:18px;margin-bottom:10px}
+.mod p{color:var(--muted);font-size:14.5px}
+
+/* chips */
+.chips{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
+.chips span{font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--muted);
+  border:1px solid var(--line-violet);border-radius:999px;padding:9px 16px;background:rgba(124,116,230,.05)}
+
+/* process / steps */
+.steps{margin-top:50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
+.step{position:relative;padding:28px 24px 26px;border:1px solid var(--line);border-radius:12px;
+  background:var(--surface)}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;
+  font-weight:900;font-size:15px;color:#1A1408;background:var(--gold-btn);margin-bottom:18px}
+.step h4{font-weight:700;font-size:16.5px;margin-bottom:8px}
+.step p{color:var(--muted);font-size:14px}
+
+/* fit / who is it for */
+.fit{margin-top:50px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fit .col{border-radius:14px;padding:34px 30px;border:1px solid var(--line)}
+.fit .yes{background:rgba(214,168,72,.06);border-color:var(--line-gold)}
+.fit .no{background:rgba(124,116,230,.05);border-color:var(--line-violet)}
+.fit h3{font-size:18px;font-weight:800;margin-bottom:20px;letter-spacing:.02em}
+.fit .yes h3{color:var(--gold-hi)} .fit .no h3{color:var(--violet-hi)}
+.fit ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+.fit li{display:flex;gap:12px;font-size:15px;color:var(--muted);align-items:flex-start}
+.fit li b{color:var(--white);font-weight:600}
+.tick{flex:0 0 auto;font-weight:900;line-height:1.5}
+.yes .tick{color:var(--gold)} .no .tick{color:var(--violet)}
+
+/* proof — logos + depoimentos (NUNCA fabricar; inserir casos reais) */
+.logos-cap{text-align:center;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2)}
+.logos{margin:30px auto 0;max-width:880px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:640px){.logos{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:860px){.logos{grid-template-columns:repeat(6,1fr)}}
+.logos .ph{aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;border-radius:10px;
+  border:1px dashed var(--line);background:var(--surface);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted-2)}
+.proof{margin-top:46px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.testi{background:var(--surface);border:1px dashed var(--line-violet);border-radius:12px;padding:30px 28px}
+.testi .ph{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--violet);font-weight:700;margin-bottom:14px}
+.testi p{color:var(--muted-2);font-size:15px;font-style:italic}
+.testi .who{margin-top:18px;color:var(--muted);font-size:13px}
+
+/* ===== AUTORIDADE ===== */
+.author{margin-top:54px;display:grid;grid-template-columns:300px 1fr;gap:0;
+  background:linear-gradient(180deg,var(--surface),#0A0A0D);border:1px solid var(--line-gold);
+  border-radius:18px;overflow:hidden}
+.author-photo{position:relative;min-height:360px;background:#09090C}
+.author-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 24%}
+.author-photo .fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:64px;background:radial-gradient(120% 100% at 30% 0%,rgba(124,116,230,.2),#09090C);
+  background-clip:text;-webkit-background-clip:text;color:transparent;background-image:var(--fh-grad)}
+.author-photo::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,transparent 70%,rgba(10,10,13,.6))}
+.author-body{padding:clamp(30px,4vw,44px)}
+.author-role{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:12px}
+.author-body h3{font-weight:900;font-size:clamp(24px,3.2vw,32px);letter-spacing:-.02em;line-height:1.1}
+.author-body h3 small{display:block;font-size:14px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin-top:8px;text-transform:none}
+.author-bio{margin:20px 0 24px;color:var(--muted);font-size:15.5px;max-width:60ch}
+.author-bio b{color:var(--white);font-weight:600}
+.author-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin:24px 0}
+.author-stats .st{background:rgba(214,168,72,.05);border:1px solid var(--line-gold);border-radius:10px;padding:16px}
+.author-stats .st .n{font-weight:900;font-size:22px;line-height:1;letter-spacing:-.02em}
+.author-stats .st .l{margin-top:7px;font-size:12px;color:var(--muted-2);line-height:1.35}
+.author-trail{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:8px}
+.author-trail span{font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--muted);
+  border:1px solid var(--line);border-radius:999px;padding:7px 14px}
+@media (max-width:760px){.author{grid-template-columns:1fr}.author-photo{min-height:300px}.author-photo::after{display:none}}
+
+/* candidate band */
+.cand{margin-top:0;background:
+  radial-gradient(80% 120% at 80% 0%, rgba(124,116,230,.16), transparent 60%),
+  linear-gradient(180deg,#101018,#0A0A0D);border:1px solid var(--line-violet);border-radius:18px;
+  padding:clamp(34px,5vw,56px);display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
+.cand h3{font-weight:900;font-size:clamp(24px,3.4vw,34px);line-height:1.08;letter-spacing:-.02em}
+.cand p{margin-top:14px;color:var(--muted);font-size:16px;max-width:48ch}
+.cand .act{display:flex;align-items:center;justify-content:flex-end}
+.cand .act .btn{width:100%}
+@media (max-width:720px){.cand{grid-template-columns:1fr}.cand .act{justify-content:stretch}}
+
+/* FAQ */
+.faq{margin-top:46px;max-width:780px}
+.q{border-bottom:1px solid var(--line)}
+.q button{width:100%;background:none;border:none;color:var(--white);text-align:left;cursor:pointer;
+  font-family:inherit;font-size:17px;font-weight:600;padding:24px 40px 24px 0;position:relative;letter-spacing:-.01em}
+.q button:focus-visible{outline:2px solid var(--violet-hi);outline-offset:4px}
+.q button::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);
+  color:var(--gold);font-size:24px;font-weight:400;transition:transform .25s}
+.q.open button::after{content:"–"}
+.q .a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.q .a p{padding:0 0 24px;color:var(--muted);font-size:15.5px;max-width:64ch}
+
+/* final CTA */
+.final{padding:clamp(72px,10vw,120px) 0;text-align:center;
+  background:radial-gradient(80% 120% at 50% 0%, rgba(124,116,230,.14), transparent 60%),var(--bg-2);
+  border-top:1px solid var(--line)}
+.final h2{font-weight:900;font-size:clamp(32px,5.5vw,58px);line-height:1.04;letter-spacing:-.025em;max-width:18ch;margin:0 auto}
+.final p{margin:22px auto 38px;color:var(--muted);font-size:18px;max-width:48ch}
+.final-cta{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:54px 0 60px;color:var(--muted-2);font-size:13.5px}
+.foot-in{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+.foot-brand p{margin-top:12px;max-width:36ch;color:var(--muted-2)}
+.foot-links{display:flex;gap:30px;flex-wrap:wrap}
+.foot-links a{color:var(--muted)}
+.foot-links a:hover{color:var(--gold-hi)}
+.foot-compliance{margin-top:30px;max-width:74ch;color:var(--muted-2);font-size:12.5px;line-height:1.7}
+.foot-bottom{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px}
+
+/* reveal animation */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:680px){
+  .fit{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .wordmark{font-size:19px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand" aria-label="FinHire — início">
+      <span class="fh-badge" aria-hidden="true"><span class="f">F</span><span class="h">H</span></span>
+      <span class="wordmark"><span class="fin">Fin</span><span class="hire">Hire</span>
+        <span class="brand-sub">Recrutamento e Seleção</span>
+      </span>
+    </a>
+    <div class="nav-cta-wrap">
+      <div class="nav-links">
+        <a href="#mecanismo">Como funciona</a>
+        <a href="#servicos">O que fazemos</a>
+        <a href="#candidatos">Sou profissional</a>
+      </div>
+      <a href="#contato" class="btn btn-gold wa-empresa">Quero contratar</a>
+    </div>
+  </div>
+</nav>
+
+<span id="top"></span>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="hero-mark" aria-hidden="true"><span class="f">F</span><span class="h">H</span></div>
+  <div class="wrap">
+    <span class="eyebrow reveal">Recrutamento &amp; Seleção · Mercado Financeiro</span>
+    <h1 class="reveal">O talento certo pra mesa que <span class="fh-text">não pode errar</span>.</h1>
+    <p class="sub reveal">A FinHire conecta <b>bancos, corretoras, asset managers e escritórios de assessoria</b> aos profissionais que movem a agulha — com triagem técnica de verdade, não currículo bonito. O talento já está mapeado <b>antes</b> de você abrir a vaga.</p>
+    <div class="hero-cta reveal">
+      <a href="#contato" class="btn btn-gold wa-empresa">Quero contratar</a>
+      <a href="#candidatos" class="btn btn-ghost">Sou profissional</a>
+    </div>
+    <div class="hero-trust reveal">
+      <span><i class="dot"></i> Funil exclusivo de talentos</span>
+      <span><i class="dot"></i> Triagem técnica MAP®</span>
+      <span><i class="dot"></i> Pipeline contínuo</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== PROBLEMA ===================== -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <div class="rule-gold"></div>
+      <h2>Contratar errado no mercado financeiro custa caro.</h2>
+      <p>Não é só o salário. É a carteira sem dono, a vaga aberta por meses e o cliente que vai embora junto com quem saiu.</p>
+    </div>
+    <div class="pain reveal">
+      <div class="item"><div class="x">→ Recrutador generalista não conhece a régua</div><p>CEA, CFP, ANCORD, mesa, private. Quem não vive o mercado <strong>manda currículo que não adere</strong> — e você perde tempo entrevistando o perfil errado.</p></div>
+      <div class="item"><div class="x">→ Vaga aberta é receita parada</div><p>Cada mês com a cadeira vazia é <strong>carteira sem cobertura</strong> e meta que não bate. Tempo de contratação importa tanto quanto o acerto.</p></div>
+      <div class="item"><div class="x">→ Turnover come a margem</div><p>Você contrata, treina, e em poucos meses <strong>perde pro concorrente</strong>. Contratação sem fit técnico e cultural não para de pé.</p></div>
+      <div class="item"><div class="x">→ Candidato que se vende bem ≠ que entrega</div><p>Entrevista de RH não mede competência técnica. Sem <strong>avaliação real</strong>, o risco vai todo pra dentro da sua operação.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MECANISMO ===================== -->
+<section class="section" id="mecanismo">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <div class="rule-gold"></div>
+      <h2>O que separa a FinHire de uma agência comum não é sorte. É <span class="violet-text">funil</span>.</h2>
+      <p>A gente não começa a procurar quando você abre a vaga. O talento certo já passou por aqui — mapeado, avaliado e pronto. Três frentes que sustentam isso.</p>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar"><h3>Funil exclusivo</h3><p>Acesso direto a centenas de profissionais formados na Metodologia MAP® e a um banco de talentos vivo do mercado financeiro — gente que você não acha em job board.</p></div>
+      <div class="pillar"><h3>Triagem técnica real</h3><p>Avaliação de competência por provas orais MAP®, não só entrevista de RH. Quem chega na sua mesa já provou que sabe — antes de você gastar uma hora.</p></div>
+      <div class="pillar"><h3>Pipeline contínuo</h3><p>Não esperamos a vaga abrir pra começar a caçar. O perfil já está mapeado, conhecido pessoalmente e pronto pra entrar — encurtando o tempo de contratação.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== O QUE FAZEMOS ===================== -->
+<section class="section alt" id="servicos">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <div class="rule-gold"></div>
+      <h2>O que a FinHire faz pela sua casa</h2>
+      <p>Do R&amp;S especializado à formação do time que você já tem. Tudo bebendo da mesma fonte: o funil de talentos do mercado financeiro.</p>
+    </div>
+    <div class="modules reveal">
+      <div class="mod"><div class="k">01</div><h4>R&amp;S especializado</h4><p>Recrutamento e seleção sob medida para Alta Renda, Private, Assessoria e Mesa. Vaga preenchida com quem cabe na sua régua.</p></div>
+      <div class="mod"><div class="k">02</div><h4>Headhunting &amp; mapeamento</h4><p>Busca ativa de perfis específicos no mercado — inclusive quem não está procurando, mas é exatamente quem você precisa.</p></div>
+      <div class="mod"><div class="k">03</div><h4>Triagem técnica MAP®</h4><p>Avaliação de competência por provas orais. Você recebe a shortlist já filtrada por quem realmente domina o produto.</p></div>
+      <div class="mod"><div class="k">04</div><h4>Treinamento in-company</h4><p>Trilhas de formação customizadas por nível e produto — da nivelação técnica à preparação pra mesa Private.</p></div>
+      <div class="mod"><div class="k">05</div><h4>Estruturação comercial</h4><p>Consultoria para montar ou escalar o seu time de assessoria com método — não no improviso.</p></div>
+      <div class="mod"><div class="k">06</div><h4>Banco de talentos vivo</h4><p>Pipeline contínuo de profissionais certificados, conhecidos um a um. Quando a vaga abre, o talento já está lá.</p></div>
+    </div>
+    <div class="chips reveal">
+      <span>Alta Renda</span><span>Private Banking</span><span>Assessoria de Investimentos</span>
+      <span>Mesa &amp; RV</span><span>Especialistas de Produto</span><span>Liderança Comercial</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESSO ===================== -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <div class="rule-gold"></div>
+      <h2>Como funciona, do briefing ao fechamento</h2>
+      <p>Processo enxuto e transparente. Você acompanha cada etapa — sem caixa-preta.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><span class="n">1</span><h4>Briefing</h4><p>Entendemos a régua técnica, a cultura da casa e a praça. O perfil certo nasce do contexto certo.</p></div>
+      <div class="step"><span class="n">2</span><h4>Mapeamento</h4><p>Busca ativa no mercado somada ao funil MAP®. Cobrimos quem está procurando e quem não está.</p></div>
+      <div class="step"><span class="n">3</span><h4>Triagem técnica</h4><p>Provas orais e avaliação de competência. Só passa quem sustenta o nível na prática.</p></div>
+      <div class="step"><span class="n">4</span><h4>Shortlist</h4><p>Você recebe poucos nomes — todos aderentes. Sem pilha de currículo pra peneirar.</p></div>
+      <div class="step"><span class="n">5</span><h4>Acompanhamento</h4><p>Suporte até o fechamento e no onboarding. A gente fica até o profissional estar de pé.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRA QUEM É ===================== -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <div class="rule-gold"></div>
+      <h2>Feito para quem contrata com critério.</h2>
+    </div>
+    <div class="fit reveal">
+      <div class="col yes">
+        <h3>É pra sua casa se…</h3>
+        <ul>
+          <li><span class="tick">✓</span><span>Você é <b>banco, corretora, MFO ou escritório de assessoria</b> contratando pro mercado financeiro.</span></li>
+          <li><span class="tick">✓</span><span>Cansou de <b>recrutador generalista</b> que não entende a régua técnica.</span></li>
+          <li><span class="tick">✓</span><span>Quer <b>triagem técnica de verdade</b> — não só entrevista de RH.</span></li>
+          <li><span class="tick">✓</span><span>Valoriza <b>velocidade com critério</b>: shortlist enxuta de quem realmente cabe.</span></li>
+        </ul>
+      </div>
+      <div class="col no">
+        <h3>Não é se…</h3>
+        <ul>
+          <li><span class="tick">✕</span><span>Você busca só o <b>cargo mais barato</b>, sem se importar com fit técnico.</span></li>
+          <li><span class="tick">✕</span><span>Quer <b>volume de currículo</b> sem critério — quantidade não é o jogo aqui.</span></li>
+          <li><span class="tick">✕</span><span>A vaga <b>não é do mercado financeiro</b> — essa é a nossa especialidade, e só ela.</span></li>
+          <li><span class="tick">✕</span><span>Procura uma agência que <b>some depois de mandar o currículo</b>. A gente acompanha.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROVA — INSERIR CASOS/LOGOS REAIS (não fabricar) ===================== -->
+<section class="section">
+  <div class="wrap">
+    <p class="logos-cap reveal">Instituições que confiam na FinHire</p>
+    <div class="logos reveal">
+      <div class="ph">Logo em breve</div><div class="ph">Logo em breve</div><div class="ph">Logo em breve</div>
+      <div class="ph">Logo em breve</div><div class="ph">Logo em breve</div><div class="ph">Logo em breve</div>
+    </div>
+    <div class="proof reveal">
+      <div class="testi"><div class="ph">Caso real do cliente</div><p>"Inserir depoimento real de uma instituição — qual vaga, em quanto tempo fechou, qualidade da shortlist."</p><div class="who">Nome · cargo · instituição</div></div>
+      <div class="testi"><div class="ph">Caso real do cliente</div><p>"Inserir depoimento real — antes/depois da parceria com a FinHire."</p><div class="who">Nome · cargo · instituição</div></div>
+      <div class="testi"><div class="ph">Caso real do profissional</div><p>"Inserir depoimento real de um profissional recolocado pela FinHire."</p><div class="who">Nome · cargo · praça</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AUTORIDADE ===================== -->
+<section class="section alt" id="contato">
+  <div class="wrap">
+    <div class="s-head reveal" style="text-align:center;margin:0 auto">
+      <div class="rule-gold" style="margin-left:auto;margin-right:auto"></div>
+      <h2>Quem conduz a sua contratação</h2>
+      <p style="margin-left:auto;margin-right:auto">Especialização em R&amp;S para o mercado financeiro — gente que conhece a mesa por dentro.</p>
+    </div>
+
+    <div class="author reveal">
+      <div class="author-photo">
+        <span class="fallback">FH</span>
+        <!-- trocar src pela foto real do especialista -->
+        <img src="assets/especialista.jpg" alt="Especialista FinHire" loading="lazy"
+             onerror="this.style.display='none'">
+      </div>
+      <div class="author-body">
+        <div class="author-role">Conduzido por · Especialista R&amp;S</div>
+        <h3>Sandro R. R.
+          <small>Sócio FinHire · especialista em recrutamento e desenvolvimento de times para o mercado financeiro</small>
+        </h3>
+        <p class="author-bio">
+          Especialista em <b>R&amp;S e desenvolvimento de times</b> para instituições financeiras, sócio
+          responsável pela vertical de carreiras do ecossistema <b>@vocebancario</b> — que desde 2017 forma
+          os profissionais que o mercado financeiro paga pra ter. A FinHire nasce desse funil:
+          <b>cada candidato é conhecido pessoalmente</b> antes de chegar até a sua casa.
+          <em style="color:var(--muted-2)">[Ajustar bio com os dados reais do Sandro.]</em>
+        </p>
+        <div class="author-stats">
+          <div class="st"><div class="n metal">2017</div><div class="l">formando talento pro mercado financeiro desde então</div></div>
+          <div class="st"><div class="n metal">[N]+</div><div class="l">Advisors no funil MAP® <em>[confirmar]</em></div></div>
+          <div class="st"><div class="n metal">[N]</div><div class="l">instituições atendidas <em>[confirmar]</em></div></div>
+          <div class="st"><div class="n metal">MAP®</div><div class="l">triagem por provas orais de competência</div></div>
+        </div>
+        <div class="author-trail">
+          <span>Bancos</span><span>Corretoras</span><span>Multi-Family Offices</span><span>Escritórios de Assessoria</span>
+        </div>
+        <div style="margin-top:26px">
+          <a href="#" class="btn btn-gold wa-empresa">Falar com o Sandro no WhatsApp</a>
+        </div>
+        <div style="margin-top:12px;color:var(--muted-2);font-size:12.5px">Resposta no mesmo dia útil.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CANDIDATOS ===================== -->
+<section class="section" id="candidatos">
+  <div class="wrap">
+    <div class="cand reveal">
+      <div>
+        <h3>É profissional do mercado financeiro? <span class="violet-text">Entre no nosso radar.</span></h3>
+        <p>Assessor, AAI, private banker, especialista de produto ou trader: cadastre-se no banco de talentos da FinHire e seja considerado nas próximas oportunidades — antes mesmo de elas virarem vaga pública. <b>Candidato nunca paga nada.</b></p>
+      </div>
+      <div class="act">
+        <a href="#" class="btn btn-violet wa-candidato">Entrar no banco de talentos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <div class="rule-gold"></div>
+      <h2>Antes de falar com a gente</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="q"><button aria-expanded="false">Quais perfis e cargos vocês recrutam?</button><div class="a"><p>Posições do mercado financeiro: Alta Renda, Private Banking, Assessoria de Investimentos, Mesa/RV, especialistas de produto e liderança comercial. Se a vaga é do setor financeiro, é com a gente.</p></div></div>
+      <div class="q"><button aria-expanded="false">O que é a triagem técnica MAP®?</button><div class="a"><p>É a avaliação de competência por provas orais da Metodologia MAP®. Em vez de confiar só no currículo e na entrevista de RH, medimos se o profissional domina o produto na prática — e você recebe só quem passou.</p></div></div>
+      <div class="q"><button aria-expanded="false">Vocês cobram do candidato?</button><div class="a"><p>Nunca. O profissional não paga nada para entrar no banco de talentos nem para ser apresentado a uma vaga. Quem contrata o serviço é a instituição.</p></div></div>
+      <div class="q"><button aria-expanded="false">Em quanto tempo recebo uma shortlist?</button><div class="a"><p>Como o talento já está mapeado no nosso funil, o prazo é mais curto que o de uma agência que começa do zero. <em>[Definir SLA médio por tipo de vaga.]</em></p></div></div>
+      <div class="q"><button aria-expanded="false">Atendem fora de São Paulo / posições remotas?</button><div class="a"><p>Sim. O funil é nacional e cobrimos posições presenciais, híbridas e remotas. <em>[Confirmar praças prioritárias.]</em></p></div></div>
+      <div class="q"><button aria-expanded="false">Sou candidato. Como entro no banco de talentos?</button><div class="a"><p>É só falar com a gente pelo botão "Entrar no banco de talentos". Você entra no radar e é considerado nas próximas oportunidades aderentes ao seu perfil.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA FINAL ===================== -->
+<section class="final">
+  <div class="wrap">
+    <h2 class="reveal">Pare de contratar <span class="fh-text">no escuro</span>.</h2>
+    <p class="reveal">Conta pra gente a vaga. A FinHire devolve uma shortlist de quem realmente cabe.</p>
+    <div class="final-cta reveal">
+      <a href="#contato" class="btn btn-gold wa-empresa">Quero contratar</a>
+      <a href="#candidatos" class="btn btn-ghost">Sou profissional</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div class="foot-brand">
+        <a href="#top" class="brand" aria-label="FinHire">
+          <span class="fh-badge" aria-hidden="true"><span class="f">F</span><span class="h">H</span></span>
+          <span class="wordmark"><span class="fin">Fin</span><span class="hire">Hire</span>
+            <span class="brand-sub">Recrutamento e Seleção</span>
+          </span>
+        </a>
+        <p>Recrutamento e seleção especializado para o mercado financeiro · ecossistema @vocebancario.</p>
+      </div>
+      <div class="foot-links">
+        <a href="#mecanismo">Como funciona</a>
+        <a href="#servicos">O que fazemos</a>
+        <a href="#candidatos">Sou profissional</a>
+        <a href="#contato" class="wa-empresa">Falar no WhatsApp</a>
+      </div>
+    </div>
+    <p class="foot-compliance">
+      FinHire é a vertical de recrutamento e seleção do ecossistema @vocebancario. Os dados de profissionais cadastrados no banco de talentos são tratados conforme a LGPD (Lei nº 13.709/2018) e utilizados exclusivamente para fins de recrutamento e seleção. O profissional não é cobrado em nenhuma etapa do processo.
+    </p>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> FinHire · @vocebancario. Todos os direitos reservados.</span>
+      <span>O talento certo, antes da vaga.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// nav shadow on scroll
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+
+// FAQ accordion
+document.querySelectorAll('.q button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const q=btn.parentElement, a=q.querySelector('.a'), open=q.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open);
+    a.style.maxHeight=open?a.scrollHeight+'px':0;
+  });
+});
+
+// scroll reveal
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// WhatsApp CTAs — editar número/mensagens aqui (um só lugar)
+// TODO: trocar pelo número do Sandro (VB Carreiras / FinHire). Hoje usa o número comercial @vocebancario.
+const WA_PHONE='5511991869191'; // 55 (BR) + 11 + 991869191
+const WA_MSG_EMPRESA='Olá! Vim pelo site da *FinHire*. Minha instituição precisa contratar pro mercado financeiro e quero falar sobre uma vaga.';
+const WA_MSG_CANDIDATO='Olá! Vim pelo site da *FinHire*. Sou profissional do mercado financeiro e quero entrar no banco de talentos de vocês.';
+const waUrl=(msg)=>'https://wa.me/'+WA_PHONE+'?text='+encodeURIComponent(msg);
+document.querySelectorAll('.wa-empresa').forEach(a=>{a.href=waUrl(WA_MSG_EMPRESA);a.target='_blank';a.rel='noopener noreferrer';});
+document.querySelectorAll('.wa-candidato').forEach(a=>{a.href=waUrl(WA_MSG_CANDIDATO);a.target='_blank';a.rel='noopener noreferrer';});
+
+// year
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
