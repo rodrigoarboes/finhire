@@ -124,15 +124,16 @@ h1 .grad{background:var(--fh-grad);-webkit-background-clip:text;background-clip:
   "use strict";
   // WhatsApp central da escola.
   var PHONE = "5511991869191";
-  // Mapa canal (slug da URL ?c=) -> rótulo legível na mensagem.
+  // Mapa canal (slug da URL ?c=) -> { label legível, handle do perfil }.
+  // Perfis FinHire seguem o padrão @finhirebr; canais não-sociais ficam sem handle.
   var CANAIS = {
-    tktk: "TikTok",
-    ig:   "Instagram",
-    in:   "LinkedIn",
-    wt:   "WhatsApp",
-    mail: "E-mail",
-    fb:   "Facebook",
-    adpro:"Portal Advisor PRO"
+    tktk: { label: "TikTok",            handle: "@finhirebr" },
+    ig:   { label: "Instagram",         handle: "@finhirebr" },
+    in:   { label: "LinkedIn",          handle: "@finhirebr" },
+    fb:   { label: "Facebook",          handle: "@finhirebr" },
+    wt:   { label: "WhatsApp",          handle: "" },
+    mail: { label: "E-mail",            handle: "" },
+    adpro:{ label: "Portal Advisor PRO", handle: "" }
   };
 
   function getParam(name){
@@ -141,17 +142,22 @@ h1 .grad{background:var(--fh-grad);-webkit-background-clip:text;background-clip:
   }
 
   var slug = (getParam("c") || "").toLowerCase().trim();
-  var canal = CANAIS[slug] || (slug ? slug.charAt(0).toUpperCase() + slug.slice(1) : null);
+  var canal = CANAIS[slug] ||
+    (slug ? { label: slug.charAt(0).toUpperCase() + slug.slice(1), handle: "" } : null);
 
   // Saudação personalizada por canal.
   var greet = document.getElementById("greet");
   if (canal) {
-    greet.innerHTML = "Você veio pelo <b>" + canal + "</b> 👋";
+    greet.innerHTML = "Você veio pelo <b>" + canal.label + "</b> 👋";
   }
 
+  // Mensagem com tokens fixos p/ a automação do Kommo parsear: "Vim pelo <rede> @finhirebr".
   function waLink(cert){
     var txt = "VAGAS FINHIRE";
-    txt += canal ? " - Vim pelo " + canal : "";
+    if (canal) {
+      txt += " - Vim pelo " + canal.label;
+      if (canal.handle) txt += " " + canal.handle;
+    }
     txt += cert ? " - Minha maior certificacao ativa: " + cert : "";
     return "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(txt);
   }
