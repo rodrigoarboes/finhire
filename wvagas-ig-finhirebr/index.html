@@ -7,7 +7,8 @@
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://finhire.com.br/vagas/?c=ig-finhirebr">
 <meta http-equiv="refresh" content="0; url=/vagas/?c=ig-finhirebr">
-<script>location.replace("/vagas/?c=ig-finhirebr" + location.hash);</script>
+<!-- repassa ?ref=... (e qualquer query) + hash pra pagina central, p/ customizar a origem -->
+<script>location.replace("/vagas/?c=ig-finhirebr" + location.search.replace(/^\?/, "&") + location.hash);</script>
 <style>html{background:#08080A;color:#fff;font-family:system-ui,sans-serif}
 body{display:flex;min-height:100dvh;align-items:center;justify-content:center;margin:0;text-align:center;padding:24px}
 a{color:#D6A848;font-weight:700}</style>
