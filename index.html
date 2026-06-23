@@ -8,13 +8,14 @@
 
 <!-- favicon (placeholder SVG — trocar pela arte final da marca) -->
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" href="assets/icon.png">
 <meta name="theme-color" content="#08080A">
 
 <!-- social / Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="FinHire — Talentos certos para o mercado financeiro">
 <meta property="og:description" content="Recrutamento especializado, pré-qualificação por vídeo e acesso a +66 mil profissionais do mercado financeiro.">
-<meta property="og:image" content="assets/og.png">
+<meta property="og:image" content="assets/icon.png">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,6 +60,8 @@ img{max-width:100%;display:block}
 
 /* ===== brand mark (CSS — placeholder até a arte final) ===== */
 .brand{display:inline-flex;align-items:center;gap:12px}
+.brand-img{height:34px;width:auto;display:block}
+.brand-img--foot{height:40px}
 .fh-badge{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
   width:40px;height:40px;border-radius:11px;background:linear-gradient(160deg,#1B1B24,#09090C);
   border:1px solid var(--line);font-style:italic;font-weight:900;font-size:20px;letter-spacing:-.07em;
@@ -255,7 +258,7 @@ footer{border-top:1px solid var(--line);padding:54px 0 60px;color:var(--muted-2)
 
 @media (max-width:680px){
   .nav-links{display:none}
-  .wordmark{font-size:19px}
+  .brand-img{height:30px}
 }
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important}
@@ -284,10 +287,7 @@ footer{border-top:1px solid var(--line);padding:54px 0 60px;color:var(--muted-2)
 <nav class="nav" id="nav">
   <div class="wrap nav-in">
     <a href="#top" class="brand" aria-label="FinHire — início">
-      <span class="fh-badge" aria-hidden="true"><svg class="fh-ico"><use href="#fh"/></svg></span>
-      <span class="wordmark"><span class="fin">Fin</span><span class="hire">Hire</span>
-        <span class="brand-sub">Recrutamento e Seleção</span>
-      </span>
+      <img class="brand-img" src="assets/logo.png" width="900" height="186" alt="FinHire — Recrutamento e Seleção">
     </a>
     <div class="nav-cta-wrap">
       <div class="nav-links">
@@ -552,10 +552,7 @@ footer{border-top:1px solid var(--line);padding:54px 0 60px;color:var(--muted-2)
     <div class="foot-in">
       <div class="foot-brand">
         <a href="#top" class="brand" aria-label="FinHire">
-          <span class="fh-badge" aria-hidden="true"><svg class="fh-ico"><use href="#fh"/></svg></span>
-          <span class="wordmark"><span class="fin">Fin</span><span class="hire">Hire</span>
-            <span class="brand-sub">Recrutamento e Seleção</span>
-          </span>
+          <img class="brand-img brand-img--foot" src="assets/logo.png" width="900" height="186" alt="FinHire — Recrutamento e Seleção">
         </a>
         <p>Recrutamento especializado para o mercado financeiro · grupo Você Bancário.</p>
       </div>

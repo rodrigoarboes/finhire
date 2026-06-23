@@ -1,29 +1,34 @@
 # assets — FinHire
 
-Arte da marca usada na landing page. **A logo no site hoje é desenhada em CSS**
-(monograma FH + wordmark FinHire), então a página já sobe bonita sem depender
-de imagem. Os arquivos abaixo são os "slots" pra quando a arte/foto chegar.
+Arte oficial da marca usada na landing page.
 
-## O que subir (e com qual nome EXATO)
+## Logos (oficiais — PNG transparente)
 
-| Arquivo | Onde aparece | Status |
+| Arquivo | Uso no site | Origem |
 |---|---|---|
-| `favicon.svg` | Aba do navegador | ✅ placeholder (monograma FH) — trocar pelo ícone final |
-| `sandro.jpg` | Bloco "Quem está por trás" — **foto de TERNO** | ⬜ subir — cai em fallback "SV" se ausente |
-| `rodrigo.jpg` | Bloco "Quem está por trás" — **foto de POLO** | ⬜ subir — cai em fallback "RA" se ausente |
-| `og.png` | Preview ao compartilhar o link (1200×630) | ⬜ recomendado pra WhatsApp/redes |
-| `logo-dark.png` / `logo-light.png` | (opcional) trocar a logo CSS por PNG | ⬜ opcional |
+| `logo.png` | **Nav** — lockup "FH + FinHire" (sem tagline), fundo escuro | FH PURO · 900×186 |
+| `logo-full.png` | Reserva — lockup completo **com tagline** "Recrutamento e Seleção" | FH · 900×186 |
+| `logo-light.png` | Reserva — lockup PURO para **fundo claro** | FH PURO · 900×186 |
+| `icon.png` | **apple-touch-icon + OG** (preview social) — FH + FinHire empilhado | 300×300 |
+| `favicon.svg` | Aba do navegador — monograma FH **flat** (nítido a 24px) | desenhado |
 
-> ⚠️ **Confirmar:** assumi que a foto de **terno = Sandro** e a de **polo = Rodrigo**.
-> Se for o contrário, basta inverter os nomes dos arquivos ao subir.
+> Footer usa o `logo.png` também (PURO), pra ficar limpo. O `logo-full.png`
+> (com tagline) fica de reserva pra peças com mais espaço / OG dedicado.
 
-### Como subir as fotos (rápido, pelo navegador)
-1. Abrir `https://github.com/rodrigoarboes/finhire/upload/claude/beautiful-goldberg-t8osfx/assets`
-2. Arrastar `sandro.jpg` e `rodrigo.jpg` (foto quadrada, ~600×600 ou maior)
-3. Commit → o deploy re-roda sozinho e as fotos aparecem.
+## ⬜ Ainda falta subir
 
-## Paleta provisória (no feeling — trocar pelos tokens oficiais)
+| Arquivo | Onde aparece | Como |
+|---|---|---|
+| `sandro.jpg` | "Quem está por trás" — foto de **terno** | anexar zip aqui ou subir no GitHub |
+| `rodrigo.jpg` | "Quem está por trás" — foto de **polo** | idem |
+| `og.png` (opcional) | OG dedicado 1200×630 | gerar quando tiver ferramenta de imagem |
 
-- Ouro (F / autoridade): `#D6A848` · hi `#F0CE84` · lo `#7E5E28`
-- Violeta (H / pessoas): `#7C74E6` · hi `#A8A1F7` · lo `#4A44A6`
-- Fundo: `#08080A` · superfícies `#15151B` / `#1C1C24`
+> Sem as fotos, o site mostra o selo "SV"/"RA" com gradiente (nada quebrado).
+> ⚠️ Imagens **coladas no chat** não chegam como arquivo — precisa **anexar**
+> (zip) ou subir direto no GitHub.
+
+## Paleta (referência da marca)
+
+- Ouro (F): `#E0C074` / `#C9A24C`
+- Violeta (H): `#8B7CF5` / `#6354E8`
+- Fundo escuro: `#08080A`
