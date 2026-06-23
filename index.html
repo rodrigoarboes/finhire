@@ -163,24 +163,30 @@ img{max-width:100%;display:block}
 .step p{color:var(--muted);font-size:14px}
 
 /* people / quem somos */
-.people{margin-top:50px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.person{background:linear-gradient(180deg,var(--surface),#0A0A0D);border:1px solid var(--line-gold);
-  border-radius:16px;overflow:hidden}
-.person-top{display:flex;gap:18px;align-items:center;padding:26px 26px 0}
-.person-photo{position:relative;flex:0 0 auto;width:94px;height:94px;border-radius:14px;overflow:hidden;
-  background:radial-gradient(120% 100% at 30% 0%,rgba(124,116,230,.18),#09090C);border:1px solid var(--line)}
+.people{margin-top:50px;display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.person{background:linear-gradient(180deg,var(--surface),#0A0A0D);border:1px solid var(--line);
+  border-radius:16px;padding:30px 26px 28px;text-align:center}
+.person--lead{border-color:var(--line-gold);
+  box-shadow:0 0 0 1px rgba(214,168,72,.12),0 24px 60px -28px rgba(214,168,72,.35)}
+.person-photo{position:relative;margin:0 auto;width:120px;height:120px;border-radius:50%;overflow:hidden;
+  background:radial-gradient(120% 100% at 50% 0%,rgba(124,116,230,.20),#09090C);border:1px solid var(--line)}
+.person--lead .person-photo{width:168px;height:168px;border:2px solid var(--gold);
+  background:radial-gradient(120% 100% at 50% 0%,rgba(214,168,72,.22),#09090C);
+  box-shadow:0 0 32px -6px rgba(214,168,72,.45)}
 .person-photo .fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-weight:900;font-size:30px;background-image:var(--fh-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.person-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%}
-.person-id .nm{font-weight:900;font-size:21px;letter-spacing:-.01em}
-.person-id .rl{margin-top:6px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);line-height:1.4}
-.person-body{padding:20px 26px 28px}
-.person-body .bio{color:var(--muted);font-size:14.5px}
-.person-body .bio b{color:var(--white);font-weight:600}
-.person-chips{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  font-weight:900;font-size:32px;background-image:var(--fh-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.person-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.person-tag{display:inline-block;margin-top:16px;font-size:11px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;color:#1A1408;background:var(--gold-btn);border-radius:999px;padding:5px 13px}
+.person .nm{margin-top:14px;font-weight:900;font-size:21px;letter-spacing:-.01em}
+.person--lead .nm{font-size:24px}
+.person .rl{margin-top:6px;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);line-height:1.4}
+.person .bio{margin-top:16px;color:var(--muted);font-size:14px;text-align:left}
+.person .bio b{color:var(--white);font-weight:600}
+.person-chips{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .person-chips span{font-size:11.5px;font-weight:700;letter-spacing:.02em;color:var(--muted);
   border:1px solid var(--line-gold);border-radius:999px;padding:6px 12px;background:rgba(214,168,72,.05)}
-@media (max-width:760px){.people{grid-template-columns:1fr}}
+@media (max-width:760px){.people{grid-template-columns:1fr}.person--lead .person-photo{width:150px;height:150px}}
 
 /* institutions */
 .insts-cap{text-align:center;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2)}
@@ -415,40 +421,29 @@ footer{border-top:1px solid var(--line);padding:54px 0 60px;color:var(--muted-2)
       <p>Uma combinação única de expertise em RH e vivência prática no mercado financeiro.</p>
     </div>
     <div class="people reveal">
-      <div class="person">
-        <div class="person-top">
-          <div class="person-photo">
-            <span class="fallback">SV</span>
-            <!-- Sandro = foto de polo (conforme pacote oficial de fotos) -->
-            <img src="assets/sandro.png" alt="Sandro Voce" loading="lazy" onerror="this.style.display='none'">
-          </div>
-          <div class="person-id">
-            <div class="nm">Sandro Voce</div>
-            <div class="rl">CEO &amp; Head de Talent Acquisition</div>
-          </div>
+      <article class="person person--lead">
+        <div class="person-photo">
+          <span class="fallback">SV</span>
+          <!-- Sandro = foto de polo (conforme pacote oficial de fotos) -->
+          <img src="assets/sandro.png" alt="Sandro Voce" loading="lazy" onerror="this.style.display='none'">
         </div>
-        <div class="person-body">
-          <p class="bio">18 anos de experiência em RH no mercado financeiro. <b>Ex-Safra</b>, onde atuou como Business Partner e Talent Acquisition para Asset Management e Tesouraria. <b>Ex-Itaú Unibanco</b>, com 11 anos de atuação, responsável pelo recrutamento de volume para assessores e especialistas de investimentos.</p>
-          <div class="person-chips"><span>Ex-Safra &amp; Ex-Itaú Unibanco</span><span>R&amp;S de alto volume</span><span>CEABE — FGV</span></div>
+        <span class="person-tag">Rosto da FinHire</span>
+        <div class="nm">Sandro Voce</div>
+        <div class="rl">CEO &amp; Head de Talent Acquisition</div>
+        <p class="bio">18 anos de experiência em RH no mercado financeiro. <b>Ex-Safra</b>, onde atuou como Business Partner e Talent Acquisition para Asset Management e Tesouraria. <b>Ex-Itaú Unibanco</b>, com 11 anos de atuação, responsável pelo recrutamento de volume para assessores e especialistas de investimentos.</p>
+        <div class="person-chips"><span>Ex-Safra &amp; Ex-Itaú Unibanco</span><span>R&amp;S de alto volume</span><span>CEABE — FGV</span></div>
+      </article>
+      <article class="person">
+        <div class="person-photo">
+          <span class="fallback">RA</span>
+          <!-- Rodrigo = foto de terno (conforme pacote oficial de fotos) -->
+          <img src="assets/rodrigo.png" alt="Rodrigo Arboés" loading="lazy" onerror="this.style.display='none'">
         </div>
-      </div>
-      <div class="person">
-        <div class="person-top">
-          <div class="person-photo">
-            <span class="fallback">RA</span>
-            <!-- Rodrigo = foto de terno (conforme pacote oficial de fotos) -->
-            <img src="assets/rodrigo.png" alt="Rodrigo Arboés" loading="lazy" onerror="this.style.display='none'">
-          </div>
-          <div class="person-id">
-            <div class="nm">Rodrigo Arboés</div>
-            <div class="rl">Fundador &amp; Mentor de Carreiras</div>
-          </div>
-        </div>
-        <div class="person-body">
-          <p class="bio">15+ anos no mercado financeiro, com passagens por <b>XP, Santander e Itaú</b>. Fundador da Academia do Assessor e da Você Bancário, impactando mais de <b>10.000 profissionais</b> com certificações ANBIMA e mentorias práticas para transição de carreira.</p>
-          <div class="person-chips"><span>Ex-XP, Santander, Itaú</span><span>+10.000 formados</span><span>CEA · AAI · MAP®</span></div>
-        </div>
-      </div>
+        <div class="nm">Rodrigo Arboés</div>
+        <div class="rl">Fundador &amp; Mentor de Carreiras</div>
+        <p class="bio">15+ anos no mercado financeiro, com passagens por <b>XP, Santander e Itaú</b>. Fundador da Academia do Assessor e da Você Bancário, impactando mais de <b>10.000 profissionais</b> com certificações ANBIMA e mentorias práticas para transição de carreira.</p>
+        <div class="person-chips"><span>Ex-XP, Santander, Itaú</span><span>+10.000 formados</span><span>CEA · AAI · MAP®</span></div>
+      </article>
     </div>
   </div>
 </section>
