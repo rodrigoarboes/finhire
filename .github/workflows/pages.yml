@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - claude/beautiful-goldberg-t8osfx
+      - claude/exciting-bell-hfejy5
   workflow_dispatch:
 
 permissions:

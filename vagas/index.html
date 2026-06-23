@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vagas FinHire — Recrutamento no Mercado Financeiro</title>
+<meta name="description" content="Cadastre-se nas vagas da FinHire. Recrutamento especializado para o mercado financeiro e de investimentos.">
+<meta name="robots" content="noindex"><!-- página de captação, fora do índice -->
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<meta name="theme-color" content="#08080A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* FinHire — landing de captação WhatsApp. Mesma paleta da LP. */
+:root{
+  --bg:#08080A; --surface:#15151B; --surface-2:#1C1C24;
+  --white:#FFFFFF; --muted:#A6A8B3; --muted-2:#74757F;
+  --violet:#7C74E6; --violet-hi:#A8A1F7;
+  --gold:#D6A848; --gold-hi:#F0CE84;
+  --line:rgba(255,255,255,.08); --line-gold:rgba(214,168,72,.28);
+  --fh-grad:linear-gradient(100deg,#EAC472 0%,#D6A848 34%,#8B82F0 64%,#7C74E6 100%);
+  --gold-btn:linear-gradient(180deg,#EFC972 0%,#D6A848 60%,#B5872F 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--white); min-height:100dvh;
+  font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  line-height:1.55; -webkit-font-smoothing:antialiased;
+  display:flex; align-items:center; justify-content:center; padding:24px 18px;
+  background-image:radial-gradient(900px 500px at 50% -10%,rgba(124,116,230,.10),transparent 60%),
+                   radial-gradient(700px 500px at 50% 120%,rgba(214,168,72,.08),transparent 60%);
+}
+a{color:inherit;text-decoration:none}
+.card{
+  width:100%; max-width:460px; background:linear-gradient(180deg,var(--surface),#0E0E13);
+  border:1px solid var(--line); border-radius:22px; padding:30px 24px 22px;
+  box-shadow:0 24px 60px rgba(0,0,0,.5);
+}
+/* brand */
+.brand{display:flex;align-items:center;gap:11px;justify-content:center;margin-bottom:20px}
+.fh-badge{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg,#1B1B24,#09090C);border:1px solid var(--line);
+  font-style:italic;font-weight:900;font-size:20px;letter-spacing:-.07em;
+  box-shadow:0 4px 14px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06)}
+.fh-badge .f{color:var(--gold-hi)} .fh-badge .h{color:var(--violet-hi)}
+.wordmark{font-weight:800;font-size:21px;letter-spacing:-.02em}
+.wordmark .fin{color:var(--white)} .wordmark .hire{color:var(--violet-hi)}
+/* heading */
+.kicker{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);border:1px solid var(--line-gold);border-radius:999px;padding:5px 12px;margin:2px auto 14px;
+  background:rgba(214,168,72,.06)}
+.center{text-align:center}
+h1{font-size:25px;line-height:1.18;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+h1 .grad{background:var(--fh-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.greet{color:var(--muted);font-size:14.5px;margin-bottom:22px}
+.greet b{color:var(--white);font-weight:700}
+.q{font-size:15px;font-weight:700;margin-bottom:4px}
+.q-sub{font-size:12.5px;color:var(--muted-2);margin-bottom:16px}
+/* cert grid */
+.certs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px}
+.cert{
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  min-height:52px;padding:8px 10px;border-radius:13px;
+  background:var(--surface-2);border:1px solid var(--line);
+  font-size:13.5px;font-weight:600;color:var(--white);
+  transition:border-color .15s,transform .08s,background .15s;cursor:pointer;
+}
+.cert small{display:block;font-size:10px;font-weight:600;color:var(--muted-2);margin-top:1px}
+.cert:hover,.cert:focus-visible{border-color:var(--line-gold);background:#22222b;outline:none}
+.cert:active{transform:scale(.98)}
+.cert.span2{grid-column:1 / -1;background:transparent;border-style:dashed;color:var(--muted);font-weight:600}
+.cert.span2:hover{border-color:var(--violet);color:var(--white)}
+/* direct link */
+.direct{display:block;text-align:center;margin-top:6px;font-size:13px;color:var(--muted)}
+.direct a{color:var(--gold);font-weight:700;border-bottom:1px solid var(--line-gold);padding-bottom:1px}
+/* footer */
+.foot{margin-top:20px;padding-top:14px;border-top:1px solid var(--line);
+  text-align:center;font-size:11px;color:var(--muted-2);line-height:1.5}
+.wa-ico{vertical-align:-2px;margin-right:5px}
+@media(max-width:360px){.certs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <main class="card" role="main">
+    <div class="brand">
+      <span class="fh-badge"><span class="f">F</span><span class="h">H</span></span>
+      <span class="wordmark"><span class="fin">Fin</span><span class="hire">Hire</span></span>
+    </div>
+
+    <div class="center">
+      <span class="kicker">Vagas · Mercado Financeiro</span>
+      <h1>Bora pra uma <span class="grad">vaga certa</span>?</h1>
+      <p class="greet" id="greet">Você chegou pelos nossos canais 👋</p>
+    </div>
+
+    <p class="q">Qual é a sua <b>maior certificação ativa</b>?</p>
+    <p class="q-sub">A gente já te encaminha pro recrutador certo. É rapidinho.</p>
+
+    <div class="certs" id="certs">
+      <a class="cert" data-cert="CPA-10/20">CPA-10/20</a>
+      <a class="cert" data-cert="CEA">CEA</a>
+      <a class="cert" data-cert="CPRO Investimentos">CPRO <small>Investimentos</small></a>
+      <a class="cert" data-cert="AAI (ANCORD)">AAI <small>ANCORD</small></a>
+      <a class="cert" data-cert="CNPI">CNPI</a>
+      <a class="cert" data-cert="CGA">CGA</a>
+      <a class="cert" data-cert="CFP">CFP</a>
+      <a class="cert" data-cert="CFA">CFA</a>
+      <a class="cert span2" data-cert="Ainda não tenho / outra">Ainda não tenho / outra</a>
+    </div>
+
+    <p class="direct">ou <a id="direct" href="#">falar com a gente direto →</a></p>
+
+    <div class="foot">
+      <svg class="wa-ico" width="13" height="13" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
+      Você será direcionado ao nosso WhatsApp oficial.<br>
+      <b style="color:var(--muted)">FinHire</b> · Recrutamento especializado no mercado financeiro
+    </div>
+  </main>
+
+<script>
+(function(){
+  "use strict";
+  // WhatsApp central da escola.
+  var PHONE = "5511991869191";
+  // Mapa canal (slug da URL ?c=) -> rótulo legível na mensagem.
+  var CANAIS = {
+    tktk: "TikTok",
+    ig:   "Instagram",
+    in:   "LinkedIn",
+    wt:   "WhatsApp",
+    mail: "E-mail",
+    fb:   "Facebook",
+    adpro:"Portal Advisor PRO"
+  };
+
+  function getParam(name){
+    var m = new RegExp("[?&]" + name + "=([^&]+)").exec(window.location.search);
+    return m ? decodeURIComponent(m[1].replace(/\+/g, " ")) : null;
+  }
+
+  var slug = (getParam("c") || "").toLowerCase().trim();
+  var canal = CANAIS[slug] || (slug ? slug.charAt(0).toUpperCase() + slug.slice(1) : null);
+
+  // Saudação personalizada por canal.
+  var greet = document.getElementById("greet");
+  if (canal) {
+    greet.innerHTML = "Você veio pelo <b>" + canal + "</b> 👋";
+  }
+
+  function waLink(cert){
+    var txt = "VAGAS FINHIRE";
+    txt += canal ? " - Vim pelo " + canal : "";
+    txt += cert ? " - Minha maior certificacao ativa: " + cert : "";
+    return "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(txt);
+  }
+
+  // Monta os links de cada certificação + o "falar direto".
+  var btns = document.querySelectorAll("#certs .cert");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].setAttribute("href", waLink(btns[i].getAttribute("data-cert")));
+    btns[i].setAttribute("rel", "noopener");
+  }
+  var direct = document.getElementById("direct");
+  direct.setAttribute("href", waLink(null));
+  direct.setAttribute("rel", "noopener");
+})();
+</script>
+</body>
+</html>
