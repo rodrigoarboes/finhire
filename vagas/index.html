@@ -89,24 +89,46 @@ h1 .grad{background:var(--fh-grad);-webkit-background-clip:text;background-clip:
       <span class="wordmark"><span class="fin">Fin</span><span class="hire">Hire</span></span>
     </div>
 
-    <div class="center">
-      <span class="kicker">Vagas · Mercado Financeiro</span>
-      <h1>Bora pra uma <span class="grad">vaga certa</span>?</h1>
-      <p class="greet" id="greet">Você chegou pelos nossos canais 👋</p>
+    <!-- STEP 1: certificação -->
+    <div id="step1">
+      <div class="center">
+        <span class="kicker">Vagas · Mercado Financeiro</span>
+        <h1>Bora pra uma <span class="grad">vaga certa</span>?</h1>
+        <p class="greet" id="greet">Você chegou pelos nossos canais 👋</p>
+      </div>
+
+      <p class="q">Qual é a sua <b>maior certificação ativa</b>?</p>
+      <p class="q-sub">Passo 1 de 2 · é rapidinho.</p>
+
+      <div class="certs" id="certs">
+        <a class="cert" data-cert="CPA (CPA10)">CPA <small>(CPA10)</small></a>
+        <a class="cert" data-cert="CPRO-R (CPA20)">CPRO-R <small>(CPA20)</small></a>
+        <a class="cert" data-cert="CPRO-i (CEA)">CPRO-i <small>(CEA)</small></a>
+        <a class="cert" data-cert="CFP®">CFP®</a>
+        <a class="cert span2" data-cert="Outras / ainda não tenho">Outras / ainda não tenho</a>
+      </div>
+
+      <p class="direct">ou <a id="direct" href="#">falar com a gente direto →</a></p>
     </div>
 
-    <p class="q">Qual é a sua <b>maior certificação ativa</b>?</p>
-    <p class="q-sub">A gente já te encaminha pro recrutador certo. É rapidinho.</p>
+    <!-- STEP 2: experiência no mercado financeiro -->
+    <div id="step2" hidden>
+      <div class="center">
+        <span class="kicker">Última informação importante</span>
+        <h1>Antes de te levar ao <span class="grad">nosso time</span></h1>
+      </div>
 
-    <div class="certs" id="certs">
-      <a class="cert" data-cert="CPA (CPA10)">CPA <small>(CPA10)</small></a>
-      <a class="cert" data-cert="CPRO-R (CPA20)">CPRO-R <small>(CPA20)</small></a>
-      <a class="cert" data-cert="CPRO-i (CEA)">CPRO-i <small>(CEA)</small></a>
-      <a class="cert" data-cert="CFP®">CFP®</a>
-      <a class="cert span2" data-cert="Outras / ainda não tenho">Outras / ainda não tenho</a>
+      <p class="q">Você já <b>atuou no mercado financeiro</b>?</p>
+      <p class="q-sub">Passo 2 de 2 · é só isso 😉</p>
+
+      <div class="certs" id="exps">
+        <a class="cert span2" data-exp="Já trabalhei em banco">Já trabalhei em <b>banco</b></a>
+        <a class="cert span2" data-exp="Já trabalhei em corretora">Já trabalhei em <b>corretora</b></a>
+        <a class="cert span2" data-exp="Nunca trabalhei no mercado financeiro">Nunca trabalhei no mercado financeiro</a>
+      </div>
+
+      <p class="direct">ou <a id="skip2" href="#">pular essa →</a></p>
     </div>
-
-    <p class="direct">ou <a id="direct" href="#">falar com a gente direto →</a></p>
 
     <div class="foot">
       <svg class="wa-ico" width="13" height="13" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
@@ -167,26 +189,52 @@ h1 .grad{background:var(--fh-grad);-webkit-background-clip:text;background-clip:
     else if (origem.rede)            greet.innerHTML = "Você veio pelo <b>" + origem.rede + "</b> 👋";
   }
 
-  // Mensagem com tokens fixos pro Kommo + um (ref) livre opcional no fim da origem.
-  function waLink(cert){
+  // Monta a mensagem do WhatsApp. Separador " | " e tokens fixos p/ a automação do Kommo parsear.
+  function waLink(cert, exp){
     var txt = "VAGAS FINHIRE";
     if (origem) {
-      txt += " - " + origem.msg;
+      txt += " | " + origem.msg;
       if (ref) txt += " (" + ref + ")";
     }
-    txt += cert ? " - Minha maior certificacao ativa: " + cert : "";
+    if (cert) txt += " | Certificação: " + cert;
+    if (exp)  txt += " | Experiência: " + exp;
     return "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(txt);
   }
+  function go(url){ window.location.href = url; }
 
-  // Monta os links de cada certificação + o "falar direto".
-  var btns = document.querySelectorAll("#certs .cert");
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].setAttribute("href", waLink(btns[i].getAttribute("data-cert")));
-    btns[i].setAttribute("rel", "noopener");
+  // Quiz de 2 passos: 1) certificação -> 2) experiência no MF -> WhatsApp.
+  var step1 = document.getElementById("step1");
+  var step2 = document.getElementById("step2");
+  var chosenCert = null;
+
+  // Passo 1: escolher certificação -> guarda e revela o passo 2.
+  var certBtns = document.querySelectorAll("#certs .cert");
+  for (var i = 0; i < certBtns.length; i++) {
+    certBtns[i].addEventListener("click", function (e) {
+      e.preventDefault();
+      chosenCert = this.getAttribute("data-cert");
+      step1.hidden = true;
+      step2.hidden = false;
+      if (window.scrollTo) window.scrollTo(0, 0);
+    });
   }
-  var direct = document.getElementById("direct");
-  direct.setAttribute("href", waLink(null));
-  direct.setAttribute("rel", "noopener");
+
+  // Passo 2: escolher experiência -> WhatsApp com canal + cert + experiência.
+  var expBtns = document.querySelectorAll("#exps .cert");
+  for (var j = 0; j < expBtns.length; j++) {
+    expBtns[j].addEventListener("click", function (e) {
+      e.preventDefault();
+      go(waLink(chosenCert, this.getAttribute("data-exp")));
+    });
+  }
+
+  // Atalhos de escape: "falar direto" (passo 1, pula tudo) e "pular essa" (passo 2, sem experiência).
+  document.getElementById("direct").addEventListener("click", function (e) {
+    e.preventDefault(); go(waLink(null, null));
+  });
+  document.getElementById("skip2").addEventListener("click", function (e) {
+    e.preventDefault(); go(waLink(chosenCert, null));
+  });
 })();
 </script>
 </body>
