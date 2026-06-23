@@ -99,15 +99,11 @@ h1 .grad{background:var(--fh-grad);-webkit-background-clip:text;background-clip:
     <p class="q-sub">A gente já te encaminha pro recrutador certo. É rapidinho.</p>
 
     <div class="certs" id="certs">
-      <a class="cert" data-cert="CPA-10/20">CPA-10/20</a>
-      <a class="cert" data-cert="CEA">CEA</a>
-      <a class="cert" data-cert="CPRO Investimentos">CPRO <small>Investimentos</small></a>
-      <a class="cert" data-cert="AAI (ANCORD)">AAI <small>ANCORD</small></a>
-      <a class="cert" data-cert="CNPI">CNPI</a>
-      <a class="cert" data-cert="CGA">CGA</a>
-      <a class="cert" data-cert="CFP">CFP</a>
-      <a class="cert" data-cert="CFA">CFA</a>
-      <a class="cert span2" data-cert="Ainda não tenho / outra">Ainda não tenho / outra</a>
+      <a class="cert" data-cert="CPA (CPA10)">CPA <small>(CPA10)</small></a>
+      <a class="cert" data-cert="CPRO-R (CPA20)">CPRO-R <small>(CPA20)</small></a>
+      <a class="cert" data-cert="CPRO-i (CEA)">CPRO-i <small>(CEA)</small></a>
+      <a class="cert" data-cert="CFP®">CFP®</a>
+      <a class="cert span2" data-cert="Outras / ainda não tenho">Outras / ainda não tenho</a>
     </div>
 
     <p class="direct">ou <a id="direct" href="#">falar com a gente direto →</a></p>
@@ -124,16 +120,35 @@ h1 .grad{background:var(--fh-grad);-webkit-background-clip:text;background-clip:
   "use strict";
   // WhatsApp central da escola.
   var PHONE = "5511991869191";
-  // Mapa canal (slug da URL ?c=) -> { label legível, handle do perfil }.
-  // Perfis FinHire seguem o padrão @finhirebr; canais não-sociais ficam sem handle.
-  var CANAIS = {
-    tktk: { label: "TikTok",            handle: "@finhirebr" },
-    ig:   { label: "Instagram",         handle: "@finhirebr" },
-    in:   { label: "LinkedIn",          handle: "@finhirebr" },
-    fb:   { label: "Facebook",          handle: "@finhirebr" },
-    wt:   { label: "WhatsApp",          handle: "" },
-    mail: { label: "E-mail",            handle: "" },
-    adpro:{ label: "Portal Advisor PRO", handle: "" }
+  // slug (?c=) -> { rede: p/ a saudação na página, msg: frase de origem no WhatsApp }.
+  // Tokens fixos pro Kommo parsear. Adicionar uma origem nova = 1 linha aqui + 1 atalho /wvagas-*.
+  var ORIGENS = {
+    // --- TikTok ---
+    "tktk-vb":        { rede:"TikTok",    msg:"Vim pelo TikTok @vocebancario" },
+    "tktk-vba":       { rede:"TikTok",    msg:"Vim pelo TikTok @vocebancaria" },
+    "tktk-finhirebr": { rede:"TikTok",    msg:"Vim pelo TikTok @finhirebr" },
+    // --- Instagram ---
+    "ig-vb":          { rede:"Instagram", msg:"Vim pelo Instagram @vocebancario" },
+    "ig-vba":         { rede:"Instagram", msg:"Vim pelo Instagram @vocebancaria" },
+    "ig-finhirebr":   { rede:"Instagram", msg:"Vim pelo Instagram @finhirebr" },
+    // --- LinkedIn (por pessoa/conta) ---
+    "in-rd":          { rede:"LinkedIn",  msg:"Vim pelo LinkedIn do Prof. Rodrigo" },
+    "in-vb":          { rede:"LinkedIn",  msg:"Vim pelo LinkedIn da Você Bancário" },
+    "in-fh":          { rede:"LinkedIn",  msg:"Vim pelo LinkedIn da FinHire" },
+    "in-sd":          { rede:"LinkedIn",  msg:"Vim pelo LinkedIn do Sandro" },
+    // --- Indicações ---
+    "ind-rd":         { rede:"indicação", msg:"Indicado pelo Prof. Rodrigo" },
+    "ind-membro":     { rede:"indicação", msg:"Indicado por um membro" },
+    "ind-rc":         { rede:"indicação", msg:"Indicado por Recrutador" },
+    "ind-rca":        { rede:"indicação", msg:"Indicado por Recrutadora" },
+    // --- Genéricos (compat com o 1º lote de links) ---
+    "tktk":  { rede:"TikTok",      msg:"Vim pelo TikTok @finhirebr" },
+    "ig":    { rede:"Instagram",   msg:"Vim pelo Instagram @finhirebr" },
+    "in":    { rede:"LinkedIn",    msg:"Vim pelo LinkedIn @finhirebr" },
+    "fb":    { rede:"Facebook",    msg:"Vim pelo Facebook @finhirebr" },
+    "mail":  { rede:"e-mail",      msg:"Vim pelo E-mail" },
+    "adpro": { rede:"Advisor PRO", msg:"Vim pelo Portal Advisor PRO" },
+    "wt":    { rede:"WhatsApp",    msg:"Vim pelo WhatsApp" }
   };
 
   function getParam(name){
@@ -142,21 +157,22 @@ h1 .grad{background:var(--fh-grad);-webkit-background-clip:text;background-clip:
   }
 
   var slug = (getParam("c") || "").toLowerCase().trim();
-  var canal = CANAIS[slug] ||
-    (slug ? { label: slug.charAt(0).toUpperCase() + slug.slice(1), handle: "" } : null);
+  var ref  = getParam("ref");  // texto livre opcional (ex: nome do recrutador, campanha)
+  var origem = ORIGENS[slug] || (slug ? { rede:null, msg:"Vim pelo " + slug } : null);
 
-  // Saudação personalizada por canal.
+  // Saudação amigável na página.
   var greet = document.getElementById("greet");
-  if (canal) {
-    greet.innerHTML = "Você veio pelo <b>" + canal.label + "</b> 👋";
+  if (origem) {
+    if (origem.rede === "indicação") greet.innerHTML = "Que bom te ver por aqui! 👋";
+    else if (origem.rede)            greet.innerHTML = "Você veio pelo <b>" + origem.rede + "</b> 👋";
   }
 
-  // Mensagem com tokens fixos p/ a automação do Kommo parsear: "Vim pelo <rede> @finhirebr".
+  // Mensagem com tokens fixos pro Kommo + um (ref) livre opcional no fim da origem.
   function waLink(cert){
     var txt = "VAGAS FINHIRE";
-    if (canal) {
-      txt += " - Vim pelo " + canal.label;
-      if (canal.handle) txt += " " + canal.handle;
+    if (origem) {
+      txt += " - " + origem.msg;
+      if (ref) txt += " (" + ref + ")";
     }
     txt += cert ? " - Minha maior certificacao ativa: " + cert : "";
     return "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(txt);
