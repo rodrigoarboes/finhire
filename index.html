@@ -357,6 +357,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h5>Empresas</h5>
         <a href="mailto:empresas@finhire.com.br">empresas@finhire.com.br</a>
         <a href="#" class="wa-empresa">WhatsApp institucional</a>
+        <a href="/deck.html" target="_blank" rel="noopener">Apresentação (deck)</a>
         <a href="#solucoes">Soluções</a>
       </div>
       <div class="foot-col">
@@ -387,7 +388,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 const WA_PHONE='5511991869191';
 const WA_MSG='Olá! Vim pelo site da *FinHire* e quero agendar um diagnóstico da nossa estrutura de contratação comercial.';
 const WA_URL='https://wa.me/'+WA_PHONE+'?text='+encodeURIComponent(WA_MSG);
-document.querySelectorAll('.wa-empresa').forEach(a=>{a.href=WA_URL;a.target='_blank';a.rel='noopener noreferrer';});
+document.querySelectorAll('.wa-empresa').forEach(a=>{a.href='/wempresa/';a.target='_blank';a.rel='noopener noreferrer';});
 document.getElementById('yr').textContent=new Date().getFullYear();
 </script>
 </body>
