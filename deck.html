@@ -30,8 +30,8 @@ body{background:#050409;font-family:'Inter',system-ui,-apple-system,sans-serif;c
   padding:9px 18px;border-radius:7px;cursor:pointer;font-family:inherit;font-size:13.5px}
 
 /* stage scales the fixed 1280x720 slide to fit the screen width */
-.stage{width:100%;max-width:1280px;margin:0 auto 22px;overflow:hidden}
-.slide{width:1280px;height:720px;background:
+.stage{width:100%;max-width:1123px;margin:0 auto 22px;overflow:hidden}
+.slide{width:1123px;height:794px;background:
   radial-gradient(90% 80% at 84% 0%,rgba(99,84,232,.16),transparent 55%),
   radial-gradient(70% 70% at 4% 100%,rgba(201,162,76,.07),transparent 60%),var(--bg);
   color:var(--white);padding:74px 90px;position:relative;overflow:hidden;
@@ -55,7 +55,8 @@ body{background:#050409;font-family:'Inter',system-ui,-apple-system,sans-serif;c
 .cover-logo{height:96px;width:auto;margin-bottom:40px}
 .cover-title{font-size:40px;font-weight:800;letter-spacing:-.02em;line-height:1.14}
 .cover-sub{margin-top:22px;font-size:22px;color:var(--gold);font-weight:600;letter-spacing:.02em}
-.cover-tag{margin-top:auto;font-size:16px;color:var(--muted-2);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.cover-divider{width:66px;height:3px;background:var(--gold-metal);border-radius:2px;margin:46px 0 28px}
+.cover-tag{font-size:16px;color:var(--muted-2);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
 
 /* method / grids */
 .grid4{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:22px 40px;max-width:none}
@@ -98,14 +99,14 @@ body{background:#050409;font-family:'Inter',system-ui,-apple-system,sans-serif;c
 .close-mail{color:var(--gold-hi);font-weight:600}
 
 @media print{
-  @page{size:1280px 720px;margin:0}
+  @page{size:A4 landscape;margin:0}
   html,body{margin:0!important;padding:0!important;background:#08070D!important}
   .printbar{display:none!important}
   /* page-break vai no ELEMENTO DE FLUXO direto (.stage), com overflow:hidden anti-vazamento */
-  .stage{width:1280px!important;height:720px!important;max-width:none!important;margin:0!important;padding:0!important;
+  .stage{width:1123px!important;height:794px!important;max-width:none!important;margin:0!important;padding:0!important;
     overflow:hidden!important;page-break-after:always;break-after:page;page-break-inside:avoid;break-inside:avoid}
   .stage:last-child{page-break-after:auto;break-after:auto}
-  .slide{transform:none!important;width:1280px!important;height:720px!important;border:0!important;box-shadow:none!important}
+  .slide{transform:none!important;width:1123px!important;height:794px!important;border:0!important;box-shadow:none!important}
 }
 </style>
 </head>
@@ -121,6 +122,7 @@ body{background:#050409;font-family:'Inter',system-ui,-apple-system,sans-serif;c
   <img class="cover-logo" src="assets/logo-full.png" alt="FinHire">
   <div class="cover-title">Talent Solutions para o <span class="gold">Mercado Financeiro</span></div>
   <div class="cover-sub">Recrutamento · Seleção · Aceleração</div>
+  <div class="cover-divider"></div>
   <div class="cover-tag">Uma marca do Grupo VocêBancário</div>
   <div class="slide-num">01</div>
 </section></div>
@@ -267,10 +269,10 @@ body{background:#050409;font-family:'Inter',system-ui,-apple-system,sans-serif;c
 <script>
 function fit(){
   document.querySelectorAll('.stage').forEach(st=>{
-    const s=Math.min(1, st.clientWidth/1280);
+    const s=Math.min(1, st.clientWidth/1123);
     const sl=st.querySelector('.slide');
     sl.style.transform='scale('+s+')';
-    st.style.height=(720*s)+'px';
+    st.style.height=(794*s)+'px';
   });
 }
 addEventListener('resize',fit);
