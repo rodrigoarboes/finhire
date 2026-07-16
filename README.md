@@ -1,53 +1,39 @@
-# FinHire — Landing Page
+# FinHire — Site (institucional + funil de candidato)
 
-Landing page da **FinHire**, recrutamento e seleção especializado para o
-**mercado financeiro** (marca de carreiras do grupo Você Bancário — evolução
-da VB Carreiras).
+Repositório do **finhire.com.br** (HTML/CSS/JS estático, deploy no GitHub Pages).
+Dois públicos, duas portas — medição unificada por GTM.
 
-Página única (HTML + CSS + JS inline), tema escuro, acabamento metálico, na
-mesma pegada de sofisticação da LP do Sales Trader. Eixo cromático seguindo as
-logos **FH** — **ouro** (autoridade/mercado) + **violeta** (pessoas/match).
+## Rotas
 
-## Estrutura
+| URL | O que é |
+|---|---|
+| `finhire.com.br` (`index.html`) | **Site institucional B2B** — Talent Solutions (copy final) |
+| `finhire.com.br/vagas/` | **Funil de candidato** — quiz (estado/cidade/experiência/disponibilidade) |
+| `finhire.com.br/wvagas-*` | ~27 **links de rastreio** por canal → `/vagas/?c=<canal>` (IG/FB/Telegram/TikTok/LinkedIn/mail…) |
+| `finhire.com.br/deck.html` | **Deck** 11 slides (16:9) para exportar em PDF (C6) |
 
-```
-.
-├── index.html              # página única (HTML + CSS + JS inline)
-├── CNAME                   # domínio custom: finhire.com.br
-├── assets/
-│   ├── favicon.svg         # monograma FH (placeholder até a arte final)
-│   ├── README.md           # slots de arte a subir (fotos, OG, logos)
-│   ├── sandro.jpg          # (subir) foto do Sandro — fallback "SV"
-│   ├── rodrigo.jpg         # (subir) foto do Rodrigo — fallback "RA"
-│   └── og.png              # (subir) preview social 1200×630
-└── .github/workflows/pages.yml   # deploy automático no GitHub Pages
-```
+## Medição
+**Google Tag Manager `GTM-WM593476`** em todas as páginas — inclusive no institucional (enxertado na reconciliação).
 
-## Seções
+## Identidade
+Violeta primário `#6354E8` · dourado champagne `#C9A24C` · dark mode · **Inter** ·
+assets reais em `assets/` (logos + fotos dos fundadores).
 
-Nav sticky · hero · faixa de stats (66.500+ / 10.000+ / 30+ / 5min) · dor ·
-soluções (R&S, Pré-Qualificação por vídeo, Treinamento, Divulgação) · processo
-(5 passos) · quem somos (Sandro + Rodrigo) · instituições · para candidatos ·
-contato · FAQ · CTA final · footer.
+## Contatos (institucional)
+- **Empresas (B2B):** `empresas@finhire.com.br` + WhatsApp institucional
+- **Profissionais:** `candidatos@finhire.com.br` (e o funil em `/vagas/`)
+- LinkedIn: `linkedin.com/showcase/finhirebr`
 
-## Conteúdo a finalizar (marcado com `[...]` no HTML)
+## Deck → PDF
+Abrir `deck.html` no Chrome → **Ctrl/Cmd+P** → *Salvar como PDF* · Layout **Paisagem** ·
+Margens **Nenhuma** · marcar **Gráficos de plano de fundo** · Escala 100%.
 
-- **Fotos**: subir `assets/sandro.jpg` (terno) e `assets/rodrigo.jpg` (polo) —
-  ver `assets/README.md`.
-- **WhatsApp**: hoje usa `(11) 98822-2442` (contato VB Carreiras). Confirmar se
-  é o número oficial da FinHire — bloco `WA_PHONE` no `<script>`.
-- **E-mail / CNPJ**: `contato@vbcarreiras.com.br` e CNPJ `63.117.156/0001-77` —
-  confirmar se troca para domínio/razão social FinHire.
-- **SLA** de shortlist (FAQ) e arte social `assets/og.png`.
+## Pendências (dependem do Rodrigo)
+- Criar caixas `empresas@`, `candidatos@` e `contato@finhire.com.br` (contato@ vai no slide 11 do deck).
+- Exportar o PDF do deck (Ctrl+P) — ambiente sem renderizador headless.
+- Confirmar LinkedIn showcase `finhirebr` no ar.
 
-## Domínio (finhire.com.br)
-
-O arquivo `CNAME` já aponta para `finhire.com.br`. Falta configurar o **DNS**
-no registrador do domínio (registros A do GitHub Pages para o apex + CNAME do
-`www`). Enquanto o DNS não propaga, o site fica acessível em
-`https://rodrigoarboes.github.io/finhire/`.
-
-## Publicação (GitHub Pages)
-
-Deploy automático via GitHub Actions a cada push na branch publicada
-(`main` ou a branch de desenvolvimento). Source: **GitHub Actions** (já ligado).
+## Regras de conteúdo (institucional — respeitadas)
+Cliente âncora sempre anônimo ("uma grande corretora de valores"); histórico C6 só no
+deck (slide 5); sem "90% de aprovação"; sem BTG na bio do Rodrigo; sem Zanella Wealth;
+números do grupo: desde 2017 · +20 mil impactados · +75 mil audiência.

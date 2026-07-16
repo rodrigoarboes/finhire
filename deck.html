@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinHire — Talent Solutions · Deck</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08070D; --bg-2:#0C0B14; --surface:#15132224; --surface-2:#1A1828;
+  --white:#F5F6FA; --muted:#A6A6B8; --muted-2:#74748A;
+  --violet:#6354E8; --violet-hi:#8B7CF5; --gold:#C9A24C; --gold-hi:#E0C074;
+  --line:rgba(255,255,255,.10); --line-gold:rgba(201,162,76,.30);
+  --gold-metal:linear-gradient(180deg,#EAD199,#E0C074 32%,#C9A24C 64%,#A9842F);
+  --violet-metal:linear-gradient(180deg,#A99EF7,#8B7CF5 45%,#6354E8);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#050409;font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--white);-webkit-font-smoothing:antialiased}
+.gold{background:var(--gold-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.violet{background:var(--violet-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* print helper bar (screen only) */
+.printbar{position:sticky;top:0;z-index:100;background:#120F1E;border-bottom:1px solid var(--line);
+  padding:12px 20px;font-size:13.5px;color:var(--muted);display:flex;gap:14px;align-items:center;flex-wrap:wrap;line-height:1.5}
+.printbar b{color:var(--white);font-weight:600}
+.printbar button{margin-left:auto;background:var(--gold-metal);color:#120E05;border:0;font-weight:700;
+  padding:9px 18px;border-radius:7px;cursor:pointer;font-family:inherit;font-size:13.5px}
+
+/* stage scales the fixed 1280x720 slide to fit the screen width */
+.stage{width:100%;max-width:1280px;margin:0 auto 22px;overflow:hidden}
+.slide{width:1280px;height:720px;background:
+  radial-gradient(90% 80% at 84% 0%,rgba(99,84,232,.16),transparent 55%),
+  radial-gradient(70% 70% at 4% 100%,rgba(201,162,76,.07),transparent 60%),var(--bg);
+  color:var(--white);padding:74px 90px;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;transform-origin:top left;border:1px solid rgba(255,255,255,.05)}
+.slide-logo{position:absolute;top:50px;right:60px;height:26px;width:auto;opacity:.92}
+.slide-num{position:absolute;bottom:42px;right:60px;font-size:14px;color:var(--muted-2);font-weight:600;letter-spacing:.02em}
+.slide-foot{position:absolute;bottom:42px;left:90px;font-size:13px;color:var(--muted-2);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.kicker{font-size:15px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.title{font-size:44px;font-weight:800;line-height:1.08;letter-spacing:-.022em;max-width:26ch}
+.lead{margin-top:22px;font-size:23px;line-height:1.5;color:var(--muted);max-width:52ch;font-weight:400}
+.lead b{color:var(--white);font-weight:600}
+
+/* bullets */
+.bul{margin-top:34px;display:flex;flex-direction:column;gap:18px;max-width:60ch}
+.bul li{list-style:none;position:relative;padding-left:30px;font-size:21px;line-height:1.45;color:#D6D6E2}
+.bul li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:11px;border-radius:3px;background:var(--gold-metal);transform:rotate(45deg)}
+.bul li b{color:#fff;font-weight:600}
+
+/* cover */
+.slide--cover{align-items:flex-start;justify-content:center}
+.cover-logo{height:96px;width:auto;margin-bottom:40px}
+.cover-title{font-size:40px;font-weight:800;letter-spacing:-.02em;line-height:1.14}
+.cover-sub{margin-top:22px;font-size:22px;color:var(--gold);font-weight:600;letter-spacing:.02em}
+.cover-tag{margin-top:auto;font-size:16px;color:var(--muted-2);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+
+/* method / grids */
+.grid4{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:22px 40px;max-width:none}
+.mi .mn{font-size:15px;font-weight:800;color:var(--violet-hi);letter-spacing:.04em;margin-bottom:8px}
+.mi h4{font-size:19px;font-weight:700;margin-bottom:7px}
+.mi p{font-size:16px;color:var(--muted);line-height:1.4}
+.note{margin-top:30px;font-size:19px;color:var(--gold-hi);font-weight:600}
+
+/* solution cards */
+.sol{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sol .c{border:1px solid var(--line);border-top:2px solid var(--gold);border-radius:12px;padding:26px 24px;background:rgba(255,255,255,.02)}
+.sol .c h4{font-size:16px;font-weight:800;letter-spacing:.03em;color:var(--gold-hi);margin-bottom:12px;text-transform:uppercase;line-height:1.3}
+.sol .c p{font-size:15.5px;color:var(--muted);line-height:1.45}
+
+/* comparison table */
+.cmp{margin-top:34px;width:100%;border-collapse:collapse;font-size:18px}
+.cmp th,.cmp td{text-align:left;padding:16px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp thead th{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-2);font-weight:700}
+.cmp thead th:last-child{color:var(--gold)}
+.cmp td:first-child{color:var(--muted);font-weight:500;width:26%}
+.cmp td.old{color:var(--muted-2);width:37%}
+.cmp td.new{color:#fff;font-weight:600}
+.cmp td.new b{color:var(--gold-hi)}
+
+/* numbers row */
+.nums{margin-top:30px;display:flex;flex-wrap:wrap;gap:16px}
+.nums .n{border:1px solid var(--line);border-radius:12px;padding:20px 24px;background:rgba(255,255,255,.02);min-width:150px}
+.nums .n .v{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.nums .n .k{margin-top:6px;font-size:13.5px;color:var(--muted)}
+.mini-bios{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.mini-bios .b .nm{font-weight:800;font-size:19px}
+.mini-bios .b .rl{font-size:13px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin:4px 0 8px}
+.mini-bios .b p{font-size:14.5px;color:var(--muted);line-height:1.45}
+.tese{margin-top:26px;font-size:24px;font-weight:700;letter-spacing:-.02em}
+
+/* closing */
+.slide--close .title{max-width:24ch}
+.close-sign{margin-top:auto;font-size:18px;color:var(--muted);font-weight:500}
+.close-sign b{color:#fff;font-weight:700}
+.close-mail{color:var(--gold-hi);font-weight:600}
+
+@media print{
+  @page{size:1280px 720px;margin:0}
+  body{background:#fff}
+  .printbar{display:none}
+  .stage{max-width:none;width:auto;height:auto!important;overflow:visible;margin:0}
+  .slide{transform:none!important;border:0;page-break-after:always;break-after:page}
+  .slide:last-child{page-break-after:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="printbar">
+  <span><b>Exportar PDF:</b> Ctrl/Cmd + P → Destino <b>Salvar como PDF</b> · Layout <b>Paisagem</b> · Margens <b>Nenhuma</b> · marque <b>Gráficos de plano de fundo</b> · Escala 100%.</span>
+  <button onclick="window.print()">Imprimir / Salvar PDF</button>
+</div>
+
+<!-- 1 · CAPA -->
+<div class="stage"><section class="slide slide--cover">
+  <img class="cover-logo" src="assets/logo-full.png" alt="FinHire">
+  <div class="cover-title">Talent Solutions para o <span class="gold">Mercado Financeiro</span></div>
+  <div class="cover-sub">Recrutamento · Seleção · Aceleração</div>
+  <div class="cover-tag">Uma marca do Grupo VocêBancário</div>
+  <div class="slide-num">01</div>
+</section></div>
+
+<!-- 2 · PROBLEMA ESTRUTURAL -->
+<div class="stage"><section class="slide">
+  <img class="slide-logo" src="assets/logo.png" alt="">
+  <div class="kicker">O problema estrutural</div>
+  <div class="title">A expansão do mercado de investimentos brasileiro tem um gargalo único: <span class="gold">gente.</span></div>
+  <ul class="bul">
+    <li>Assessores certificados não acompanham a abertura de escritórios, mesas e alta renda.</li>
+    <li>O profissional pronto virou <b>commodity assediada, cara e sem lealdade</b>.</li>
+    <li>Quem vem de fora não fala a língua do cliente de alta renda.</li>
+    <li>Resultado: cadeiras vazias, ramp-up lento e turnover devorando margem.</li>
+  </ul>
+  <div class="slide-num">02</div>
+</section></div>
+
+<!-- 3 · A FONTE QUE O MERCADO IGNORA -->
+<div class="stage"><section class="slide">
+  <img class="slide-logo" src="assets/logo.png" alt="">
+  <div class="kicker">A fonte que o mercado ignora</div>
+  <div class="title">O maior estoque de talento comercial do país está <span class="gold">dentro das agências.</span></div>
+  <p class="lead">Milhares de profissionais do varejo bancário com certificação ANBIMA, disciplina de meta e base de relacionamento — <b>sem uma ponte estruturada</b> para o mercado de investimentos. Há 9 anos o Grupo VocêBancário constrói essa ponte.</p>
+  <div class="slide-num">03</div>
+</section></div>
+
+<!-- 4 · QUEM SOMOS -->
+<div class="stage"><section class="slide">
+  <img class="slide-logo" src="assets/logo.png" alt="">
+  <div class="kicker">Quem somos</div>
+  <div class="title">Grupo VocêBancário: a máquina de formação por trás da <span class="violet">FinHire.</span></div>
+  <div class="nums">
+    <div class="n"><div class="v gold">Desde 2017</div><div class="k">formando talento pro mercado financeiro</div></div>
+    <div class="n"><div class="v gold">+20 mil</div><div class="k">profissionais impactados</div></div>
+    <div class="n"><div class="v gold">+75 mil</div><div class="k">de audiência proprietária</div></div>
+  </div>
+  <p class="lead" style="margin-top:34px">A <b>FinHire</b> é a unidade B2B que fecha o ciclo: <b>formação → validação → placement</b>.</p>
+  <div class="slide-num">04</div>
+</section></div>
+
+<!-- 5 · HISTÓRICO C6 -->
+<div class="stage"><section class="slide">
+  <img class="slide-logo" src="assets/logo.png" alt="">
+  <div class="kicker">Histórico C6</div>
+  <div class="title">Uma relação que começou em <span class="gold">2021.</span></div>
+  <p class="lead">O Grupo VocêBancário apoiou a formação de assessores do C6 Bank com treinamentos de certificação CPA-20. A FinHire é a evolução natural desse trabalho: <b>da certificação do time que você tem, à entrega do profissional certificado, validado e pronto para performar.</b></p>
+  <div class="slide-num">05</div>
+</section></div>
+
+<!-- 6 · METODOLOGIA -->
+<div class="stage"><section class="slide">
+  <img class="slide-logo" src="assets/logo.png" alt="">
+  <div class="kicker">Metodologia</div>
+  <div class="title">Quatro etapas, um parecer técnico.</div>
+  <div class="grid4">
+    <div class="mi"><div class="mn">01 — Sourcing Multicanal</div><p>Audiência proprietária do ecossistema VocêBancário + hunting ativo em bancos, corretoras e escritórios.</p></div>
+    <div class="mi"><div class="mn">02 — Atração Qualificada</div><p>Abordagem consultiva, direcionada ao perfil e à estrutura de remuneração da posição.</p></div>
+    <div class="mi"><div class="mn">03 — Validação Dupla</div><p>Operador de mercado E especialista em TA bancário: aderência técnica, conversão, maturidade e resiliência. Parecer em até 24h.</p></div>
+    <div class="mi"><div class="mn">04 — Entrega Estruturada</div><p>Shortlists semanais organizadas por praça e prioridade, com governança e indicadores.</p></div>
+  </div>
+  <div class="note">Atuamos como extensão da sua área de recrutamento — com governança, indicadores e SLA.</div>
+  <div class="slide-num">06</div>
+</section></div>
+
+<!-- 7 · POR QUE NÃO SOMOS MAIS UM HEADHUNTER -->
+<div class="stage"><section class="slide">
+  <img class="slide-logo" src="assets/logo.png" alt="">
+  <div class="kicker">Por que não somos mais um headhunter</div>
+  <table class="cmp">
+    <thead><tr><th></th><th>Headhunter tradicional</th><th>FinHire</th></tr></thead>
+    <tbody>
+      <tr><td>Origem do candidato</td><td class="old">Garimpo em LinkedIn e indicações</td><td class="new">Pipeline proprietário + hunting ativo</td></tr>
+      <tr><td>Quem avalia</td><td class="old">Triagem de currículo por RH generalista</td><td class="new">Operador de mercado + especialista em TA bancário</td></tr>
+      <tr><td>Velocidade</td><td class="old">Semanas por shortlist</td><td class="new">Shortlists semanais · <b>parecer em 24h</b></td></tr>
+      <tr><td>Argumento de atração</td><td class="old">Salário</td><td class="new">Carreira + estrutura de comp &amp; incentivos da casa</td></tr>
+      <tr><td>Pós-contratação</td><td class="old">Entrega e encerra</td><td class="new">Mentoria individual até 120 dias</td></tr>
+    </tbody>
+  </table>
+  <div class="slide-num">07</div>
+</section></div>
+
+<!-- 8 · MODELOS DE ATUAÇÃO -->
+<div class="stage"><section class="slide">
+  <img class="slide-logo" src="assets/logo.png" alt="">
+  <div class="kicker">Modelos de atuação</div>
+  <div class="title">Do placement pontual ao projeto dedicado.</div>
+  <div class="sol">
+    <div class="c"><h4>Recrutamento &amp; Seleção</h4><p>Atração, triagem e entrega de candidatos validados, com garantia de reposição.</p></div>
+    <div class="c"><h4>Recrutamento + Aceleração</h4><p>Mentoria individual pós-contratação nos primeiros 120 dias: reduz turnover inicial e acelera captação.</p></div>
+    <div class="c"><h4>Projetos Dedicados</h4><p>Volume hiring, estruturação de funil, formação de banco de talentos e consultoria de atração &amp; incentivos.</p></div>
+  </div>
+  <div class="note">Escopos de consultoria e projetos dedicados são estruturados sob demanda, a partir do diagnóstico.</div>
+  <div class="slide-num">08</div>
+</section></div>
+
+<!-- 9 · GOVERNANÇA -->
+<div class="stage"><section class="slide">
+  <img class="slide-logo" src="assets/logo.png" alt="">
+  <div class="kicker">Governança</div>
+  <div class="title">Uma parceria com régua, não uma vaga avulsa.</div>
+  <ul class="bul">
+    <li>Reuniões periódicas de alinhamento.</li>
+    <li>Indicadores de contratação e qualidade.</li>
+    <li>Ajuste contínuo de rota.</li>
+    <li>Flexibilidade conforme o direcionamento do cliente.</li>
+  </ul>
+  <div class="slide-num">09</div>
+</section></div>
+
+<!-- 10 · PROVA + FUNDADORES -->
+<div class="stage"><section class="slide">
+  <img class="slide-logo" src="assets/logo.png" alt="">
+  <div class="kicker">Prova &amp; fundadores</div>
+  <div class="nums">
+    <div class="n"><div class="v gold">Desde 2017</div><div class="k">operando</div></div>
+    <div class="n"><div class="v gold">+20 mil</div><div class="k">impactados</div></div>
+    <div class="n"><div class="v gold">+75 mil</div><div class="k">audiência</div></div>
+    <div class="n"><div class="v gold">14 praças</div><div class="k">operação nacional ativa</div></div>
+    <div class="n"><div class="v gold">24h</div><div class="k">parecer técnico</div></div>
+  </div>
+  <div class="mini-bios">
+    <div class="b"><div class="nm">Rodrigo Arboés, FAP®</div><div class="rl">Cofundador</div><p>15+ anos no mercado financeiro, do varejo à alta renda (Bradesco, Itaú, Santander Select, XP). Fundador do Grupo VocêBancário. MBA em Investimentos e Private Banking (Ibmec).</p></div>
+    <div class="b"><div class="nm">Sandro Rodrigues</div><div class="rl">Cofundador · Head de Talent Solutions</div><p>18+ anos em RH no mercado financeiro: 11 anos de Itaú Unibanco e Banco Safra (Talent Acquisition de Asset, Tesouraria, High Net e SafraInvest). Pós-graduado pela FGV.</p></div>
+  </div>
+  <div class="tese">Um fundador viveu a cadeira. <span class="gold">O outro construiu o time.</span></div>
+  <div class="slide-num">10</div>
+</section></div>
+
+<!-- 11 · PRÓXIMO PASSO -->
+<div class="stage"><section class="slide slide--close">
+  <img class="slide-logo" src="assets/logo.png" alt="">
+  <div class="kicker">Próximo passo</div>
+  <div class="title">Diagnóstico gratuito de <span class="gold">30 minutos.</span></div>
+  <p class="lead">Mapeamos seu funil de contratação comercial e apresentamos o desenho de projeto.</p>
+  <div class="close-sign">
+    <b>Rodrigo Arboés &amp; Sandro Rodrigues</b><br>
+    FinHire · Grupo VocêBancário<br>
+    <span class="close-mail">contato@finhire.com.br</span>
+  </div>
+  <div class="slide-num">11</div>
+</section></div>
+
+<script>
+function fit(){
+  document.querySelectorAll('.stage').forEach(st=>{
+    const s=Math.min(1, st.clientWidth/1280);
+    const sl=st.querySelector('.slide');
+    sl.style.transform='scale('+s+')';
+    st.style.height=(720*s)+'px';
+  });
+}
+addEventListener('resize',fit);
+addEventListener('load',fit);
+fit();
+</script>
+</body>
+</html>
