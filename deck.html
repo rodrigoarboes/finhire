@@ -99,11 +99,13 @@ body{background:#050409;font-family:'Inter',system-ui,-apple-system,sans-serif;c
 
 @media print{
   @page{size:1280px 720px;margin:0}
-  body{background:#fff}
-  .printbar{display:none}
-  .stage{max-width:none;width:auto;height:auto!important;overflow:visible;margin:0}
-  .slide{transform:none!important;border:0;page-break-after:always;break-after:page}
-  .slide:last-child{page-break-after:auto}
+  html,body{margin:0!important;padding:0!important;background:#08070D!important}
+  .printbar{display:none!important}
+  /* page-break vai no ELEMENTO DE FLUXO direto (.stage), com overflow:hidden anti-vazamento */
+  .stage{width:1280px!important;height:720px!important;max-width:none!important;margin:0!important;padding:0!important;
+    overflow:hidden!important;page-break-after:always;break-after:page;page-break-inside:avoid;break-inside:avoid}
+  .stage:last-child{page-break-after:auto;break-after:auto}
+  .slide{transform:none!important;width:1280px!important;height:720px!important;border:0!important;box-shadow:none!important}
 }
 </style>
 </head>
