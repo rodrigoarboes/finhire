@@ -8,6 +8,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WM593476');</script>
 <!-- End Google Tag Manager -->
+<script>document.documentElement.classList.add('js')</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FinHire — Talent Solutions para o Mercado Financeiro</title>
@@ -175,10 +176,14 @@ footer{border-top:1px solid var(--line);padding:54px 0 60px;color:var(--muted-2)
 .foot-bottom{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);
   display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px}
 
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
+/* scroll reveal — progressive enhancement: items hide ONLY when JS is on (html.js),
+   so a no-JS visitor still sees everything. --rd is the per-item stagger delay. */
+.reveal{transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);transition-delay:var(--rd,0s)}
+html.js .reveal{opacity:0;transform:translateY(22px)}
+html.js .reveal.in{opacity:1;transform:none}
+.cards .card:hover{transform:translateY(-3px)} /* keep hover lift winning over reveal's resting transform */
 @media (max-width:760px){.founders{grid-template-columns:1fr}.nav-links{display:none}.founder-top{flex-direction:column;text-align:center;align-items:center}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.reveal{opacity:1!important;transform:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
@@ -382,14 +387,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
-const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-// WhatsApp institucional (número central do grupo)
-const WA_PHONE='5511991869191';
-const WA_MSG='Olá! Vim pelo site da *FinHire* e quero agendar um diagnóstico da nossa estrutura de contratação comercial.';
-const WA_URL='https://wa.me/'+WA_PHONE+'?text='+encodeURIComponent(WA_MSG);
-document.querySelectorAll('.wa-empresa').forEach(a=>{a.href='/wempresa/';a.target='_blank';a.rel='noopener noreferrer';});
 document.getElementById('yr').textContent=new Date().getFullYear();
+// WhatsApp institucional → stub rastreado /wempresa/ (número central do grupo)
+document.querySelectorAll('.wa-empresa').forEach(a=>{a.href='/wempresa/';a.target='_blank';a.rel='noopener noreferrer';});
+
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// count-up: preserva prefixo "+" e sufixo (" mil"/" praças"/"h"); pula anos (ex.: 2017)
+function countUp(el){
+  if(el.dataset.counted)return; el.dataset.counted='1';
+  const m=el.textContent.trim().match(/^(\D*)(\d[\d.]*)(.*)$/s);
+  if(!m)return;
+  const pre=m[1], target=parseInt(m[2].replace(/\./g,''),10), suf=m[3];
+  if(reduce||isNaN(target)||(!pre.trim()&&!suf.trim()&&target>=1900&&target<=2100))return;
+  const dur=1100, t0=performance.now(), fmt=n=>n.toLocaleString('pt-BR');
+  el.textContent=pre+'0'+suf;
+  requestAnimationFrame(function tick(now){
+    const p=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-p,3);
+    el.textContent=pre+fmt(Math.round(e*target))+suf;
+    if(p<1)requestAnimationFrame(tick);
+  });
+}
+
+// scroll-reveal + stagger; após revelar, limpa o estado p/ não travar o hover dos cards
+const io=new IntersectionObserver((es)=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target; el.classList.add('in'); io.unobserve(el);
+  el.querySelectorAll('[data-count]').forEach(countUp);
+  el.addEventListener('transitionend',function h(ev){
+    if(ev.target!==el||(ev.propertyName!=='opacity'&&ev.propertyName!=='transform'))return;
+    el.classList.remove('reveal','in'); el.style.removeProperty('--rd');
+    el.removeEventListener('transitionend',h);
+  });
+}),{threshold:.12});
+
+// marca os números como contadores
+document.querySelectorAll('.proof .p .n, .hero-trust b').forEach(n=>n.setAttribute('data-count',''));
+
+// blocos em grid: filhos entram em cascata (em vez do bloco inteiro de uma vez)
+document.querySelectorAll('.cards,.method,.proof,.founders').forEach(group=>{
+  group.classList.remove('reveal'); group.classList.add('in');
+  [...group.children].forEach((c,i)=>{c.classList.add('reveal');c.style.setProperty('--rd',(i*0.08).toFixed(2)+'s');});
+});
+// hero: cascata na entrada
+document.querySelectorAll('.hero .wrap>.reveal').forEach((c,i)=>c.style.setProperty('--rd',(i*0.09).toFixed(2)+'s'));
+
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
