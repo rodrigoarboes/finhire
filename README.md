@@ -10,7 +10,8 @@ Dois públicos, duas portas — medição unificada por GTM.
 | `finhire.com.br` (`index.html`) | **Site institucional B2B** — Talent Solutions (copy final) |
 | `finhire.com.br/vagas/` | **Funil de candidato** — quiz (estado/cidade/experiência/disponibilidade) |
 | `finhire.com.br/wvagas-*` | ~27 **links de rastreio** por canal → `/vagas/?c=<canal>` (IG/FB/Telegram/TikTok/LinkedIn/mail…) |
-| `finhire.com.br/deck.html` | **Deck** 11 slides (16:9) para exportar em PDF (C6) |
+| `finhire.com.br/deck.html` | **Deck público** — 11 slides A4 paisagem (sem histórico C6) |
+| `/deck-completo.html` (não linkado) | **Deck completo** — 12 slides, com histórico C6 (enviar só ao C6) |
 
 ## Medição
 **Google Tag Manager `GTM-WM593476`** em todas as páginas — inclusive no institucional (enxertado na reconciliação).
@@ -29,7 +30,7 @@ Abrir `deck.html` no Chrome → **Ctrl/Cmd+P** → *Salvar como PDF* · Layout *
 Margens **Nenhuma** · marcar **Gráficos de plano de fundo** · Escala 100%.
 
 ## Pendências (dependem do Rodrigo)
-- Criar caixas `empresas@`, `candidatos@` e `contato@finhire.com.br` (contato@ vai no slide 11 do deck).
+- Criar caixas `empresas@`, `candidatos@` e `contato@finhire.com.br` (contato@ vai no slide final do deck).
 - Exportar o PDF do deck (Ctrl+P) — ambiente sem renderizador headless.
 - Confirmar LinkedIn showcase `finhirebr` no ar.
 
