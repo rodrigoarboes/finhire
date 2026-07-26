@@ -113,3 +113,20 @@ Mudanças na zona do Portal:
 ## Backup textual da zona (export "COPIAR REGISTROS DE DNS")
 
 _(pendente — colar aqui quando capturado)_
+
+## 🚨 Achado colateral (2026-07): SPF duplicado no vocebancario.com.br
+
+Auditoria DNS do domínio principal revelou **DOIS registros SPF no apex**:
+
+1. `v=spf1 a mx include:websitewelcome.com include:amazonses.com ~all`
+2. `v=spf1 a mx include:websitewelcome.com ~all`  ← **redundante, apagar**
+
+Pela RFC 7208, mais de um `v=spf1` no mesmo nome causa **PermError** — o
+validador desiste e o e-mail perde a autenticação SPF (pior nota de spam
+hoje, em todos os envios @vocebancario). Correção (2 min): na zona DNS do
+vocebancario.com.br (cPanel → Zone Editor, ou Portal), **excluir o registro
+nº 2** e manter só o nº 1 (que já inclui HostGator + Amazon SES).
+
+Estado saudável verificado no mesmo domínio: MX local (mail.vocebancario),
+DKIM cPanel presente (`default._domainkey`), DMARC `p=none`, e o IP da
+hospedagem (162.241.203.70) **limpo** em Spamcop, Barracuda e SORBS.
