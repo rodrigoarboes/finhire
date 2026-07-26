@@ -114,6 +114,19 @@ Mudanças na zona do Portal:
 
 _(pendente — colar aqui quando capturado)_
 
+## 📌 Handoff — e-mail marketing central (ADIADO, executar no hub)
+
+Decisão de 2026-07 (Rodrigo): montar **Listmonk + Amazon SES** como
+plataforma de e-mail marketing do GRUPO (todas as marcas), no projeto hub.
+- Volume real: diário para 3–4k leads quentes + reativações da base de 15k
+  → custo estimado ~R$ 115/mês (VPS ~R$ 35 + SES US$ 0,10/mil envios).
+- Rodrigo possivelmente JÁ TEM uma VPS — verificar antes de contratar.
+- Um subdomínio de envio por marca (`news.vocebancario.com.br`,
+  `news.finhire.com.br`…) — nunca disparar das caixas corporativas.
+- Falta decidir/fazer no hub: conta AWS própria (o SES visto no DNS é do
+  Resend dos apps, não dele), pedido de saída do sandbox SES, instalação
+  do Listmonk na VPS, DNS dos subdomínios de envio, plano de aquecimento.
+
 ## 🚨 Achado colateral (2026-07): SPF duplicado no vocebancario.com.br
 
 Auditoria DNS do domínio principal revelou **DOIS registros SPF no apex**:
