@@ -25,12 +25,18 @@ assets reais em `assets/` (logos + fotos dos fundadores).
 - **Profissionais:** `candidatos@finhire.com.br` (e o funil em `/vagas/`)
 - LinkedIn: `linkedin.com/showcase/finhirebr`
 
+## E-mail (infra) — verificado em 2026-07 via DNS
+- **DNS do domínio:** HostGator (nameservers `dns3/dns4.hostgator.com.br`) — a zona é editada no painel da HostGator.
+- **E-mail:** **ImprovMX** (redirecionamento/forwarding) — MX `mx1/mx2.improvmx.com`, SPF `spf.improvmx.com`. **Não são caixas HostGator.**
+- **Criar/gerenciar endereços:** `app.improvmx.com` → domínio `finhire.com.br` → *Aliases*. Alias novo entra na hora, grátis; um alias pode ter **vários destinos** (ex.: `candidatos@` → Gmail do Rodrigo + do Sandro). Se houver alias catch-all (`*`), qualquer endereço @finhire.com.br já encaminha.
+- **Limitação:** forwarding só **recebe**. Para a equipe **responder como** @finhire.com.br é preciso SMTP do ImprovMX (plano pago) ou migrar os MX para caixas reais (Zoho Mail tem plano grátis p/ até 5 usuários; Google Workspace é o padrão profissional). A troca de MX se faz no painel da HostGator.
+
 ## Deck → PDF
 Abrir `deck.html` no Chrome → **Ctrl/Cmd+P** → *Salvar como PDF* · Layout **Paisagem** ·
 Margens **Nenhuma** · marcar **Gráficos de plano de fundo** · Escala 100%.
 
 ## Pendências (dependem do Rodrigo)
-- Criar caixas `empresas@`, `candidatos@` e `contato@finhire.com.br` (contato@ vai no slide final do deck).
+- Conferir no ImprovMX os aliases `empresas@`, `candidatos@` e `contato@` (se não houver catch-all `*`, criar — contato@ vai no slide final do deck).
 - Exportar o PDF do deck (Ctrl+P) — ambiente sem renderizador headless.
 - Confirmar LinkedIn showcase `finhirebr` no ar.
 
