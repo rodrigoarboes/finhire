@@ -26,6 +26,8 @@ assets reais em `assets/` (logos + fotos dos fundadores).
 - LinkedIn: `linkedin.com/showcase/finhirebr`
 
 ## E-mail (infra) — verificado em 2026-07 via DNS
+> Mapa completo da zona DNS, o "botão proibido" do Portal e o roteiro de
+> migração para caixas HostGator: **docs/DNS_EMAIL_FINHIRE.md**
 - **DNS do domínio:** HostGator (nameservers `dns3/dns4.hostgator.com.br`) — a zona é editada no painel da HostGator.
 - **E-mail:** **ImprovMX** (redirecionamento/forwarding) — MX `mx1/mx2.improvmx.com`, SPF `spf.improvmx.com`. **Não são caixas HostGator.**
 - **Criar/gerenciar endereços:** `app.improvmx.com` → domínio `finhire.com.br` → *Aliases*. Alias novo entra na hora, grátis; um alias pode ter **vários destinos** (ex.: `candidatos@` → Gmail do Rodrigo + do Sandro). Se houver alias catch-all (`*`), qualquer endereço @finhire.com.br já encaminha.
