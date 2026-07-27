@@ -1,9 +1,57 @@
 # DNS & E-mail — finhire.com.br (mapa verificado)
 
 > Fonte: investigação read-only via Claude Chrome no Portal HostGator + cPanel
-> em 2026-07 (nada foi alterado), conferida com consulta DNS externa.
-> Este arquivo é o **backup do estado** e o **manual de segurança** antes de
-> qualquer mudança de DNS/e-mail.
+> em 2026-07, conferida com consulta DNS externa.
+> Este arquivo guarda o **estado final**, o **histórico da migração** e o
+> **manual de segurança** para futuras mudanças de DNS/e-mail.
+
+## ✅ ESTADO FINAL — migração concluída e auditada (2026-07)
+
+O **Cenário 2 foi executado** (3 sessões de Claude in Chrome + verificação
+DNS externa). Auditoria final: **mail-tester 10/10** — SPF PASS, DKIM PASS
+(2048-bit, s=default), DMARC PASS, PTR válido, zero blacklists (IP de saída
+162.241.203.67 limpo).
+
+**Caixas (7, quota 2 GB cada):** empresas@, candidatos@, contato@,
+financeiro@, sandro.rodrigues@, silvia.rodrigues@, rodrigo.arboes@.
+Webmail: `webmail.finhire.com.br` (Roundcube). IMAP/SMTP:
+`mail.finhire.com.br`, portas 993/465 SSL, usuário = endereço completo.
+
+**Encaminhadores (15) — caixa sempre retém o original:**
+| Caixa | Cópias para |
+|---|---|
+| empresas@ / candidatos@ / contato@ | rodrigo.arboes@vocebancario.com.br · sandrorrv@gmail.com · rarboesclaude@gmail.com |
+| financeiro@ | financeiro@vocebancario.com.br · rarboesclaude@gmail.com |
+| rodrigo.arboes@ | rodrigo.arboes@vocebancario.com.br · rarboesclaude@gmail.com |
+| sandro.rodrigues@ · silvia.rodrigues@ | sandrorrv@gmail.com |
+
+`rarboesclaude@gmail.com` é conta do Rodrigo, criada por ele como caixa de
+leitura do assistente de IA (Claude Cowork) — decisão informada e proposital.
+`sandrorrv@gmail.com` confirmado como Gmail ativo do Sandro via histórico
+de correspondência.
+
+**Zona DNS final (autoritativa, no Portal):** 4× A apex GitHub Pages
+(185.199.108–111.153) · CNAME www e ftp · A mail → 162.241.203.70 ·
+A webmail → 162.241.203.70 · MX 0 → mail.finhire.com.br · TXT SPF único
+`v=spf1 a mx ip4:162.241.203.67 include:websitewelcome.com ~all` · TXT
+default._domainkey (DKIM) · A app → 185.158.133.1 (Lovable) + TXT _lovable ·
+TXT _dmarc `p=none` · send.finhire.com.br (SES) + resend._domainkey
+intactos · **zero registros ImprovMX**. Email Routing: Local Mail Exchanger.
+
+**⚠️ Zona-fantasma:** o cPanel (br996 → Zone Editor) mantém uma zona LOCAL
+do finhire.com.br que diverge (apex → 162.241.203.70, sem GitHub/app/SES).
+Ela **não é autoritativa** (NS apontam para a zona do Portal) e não tem
+efeito. NÃO usar o Zone Editor do cPanel para este domínio; editar sempre
+no Portal.
+
+**Pendências opcionais:** encerrar a conta ImprovMX (~1 semana de
+observação) · configurar "Enviar como" no Gmail do Rodrigo/Sandro (SMTP
+mail.finhire.com.br:465) · endurecer DMARC (`p=none` → `quarantine`) num
+segundo momento.
+
+---
+
+# Histórico da migração (referência)
 
 ## Fatos verificados
 
