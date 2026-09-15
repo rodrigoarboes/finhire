@@ -86,6 +86,31 @@ h1 .grad{background:var(--fh-grad);-webkit-background-clip:text;background-clip:
 .foot{margin-top:20px;padding-top:14px;border-top:1px solid var(--line);
   text-align:center;font-size:11px;color:var(--muted-2);line-height:1.5}
 .wa-ico{vertical-align:-2px;margin-right:5px}
+/* step 3 — formulario de captura */
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:5px}
+.field input{
+  width:100%;padding:12px 13px;border-radius:12px;font:inherit;font-size:15px;
+  background:var(--surface-2);border:1px solid var(--line);color:var(--white);
+  transition:border-color .15s;
+}
+.field input::placeholder{color:var(--muted-2)}
+.field input:focus{outline:none;border-color:var(--gold)}
+.field input[aria-invalid="true"]{border-color:#E5484D}
+.consent{display:flex;gap:9px;align-items:flex-start;margin:14px 0 12px;font-size:12px;color:var(--muted);line-height:1.5}
+.consent input{margin-top:2px;width:16px;height:16px;accent-color:var(--gold);flex:0 0 auto}
+.consent a{color:var(--gold);border-bottom:1px solid var(--line-gold)}
+.promise{font-size:12.5px;color:var(--muted);line-height:1.5;background:rgba(124,116,230,.08);
+  border:1px solid rgba(124,116,230,.22);border-radius:12px;padding:11px 13px;margin-bottom:14px}
+.btn-go{
+  width:100%;padding:15px;border:0;border-radius:13px;cursor:pointer;
+  font:inherit;font-size:15.5px;font-weight:800;letter-spacing:.01em;
+  background:var(--gold-btn);color:#17130A;
+}
+.btn-go:disabled{opacity:.6;cursor:progress}
+.form-err{display:none;margin-top:10px;font-size:12.5px;color:#FF9A9D;text-align:center}
+.form-err.on{display:block}
+#cf-turnstile{margin-bottom:12px;display:flex;justify-content:center}
 @media(max-width:360px){.certs{grid-template-columns:1fr}}
 </style>
 </head>
@@ -112,11 +137,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="q-sub">Passo 1 de 2 · é rapidinho.</p>
 
       <div class="certs" id="certs">
-        <a class="cert" data-cert="CPA (CPA10)">CPA <small>(CPA10)</small></a>
-        <a class="cert" data-cert="CPRO-R (CPA20)">CPRO-R <small>(CPA20)</small></a>
-        <a class="cert" data-cert="CPRO-i (CEA)">CPRO-i <small>(CEA)</small></a>
-        <a class="cert" data-cert="CFP®">CFP®</a>
-        <a class="cert span2" data-cert="Outras / ainda não tenho">Outras / ainda não tenho</a>
+        <a class="cert" data-cert="cpa10">CPA <small>(CPA10)</small></a>
+        <a class="cert" data-cert="cpa20">CPRO-R <small>(CPA20)</small></a>
+        <a class="cert" data-cert="cea">CPRO-i <small>(CEA)</small></a>
+        <a class="cert" data-cert="cfp">CFP®</a>
+        <a class="cert span2" data-cert="nenhuma">Outras / ainda não tenho</a>
       </div>
 
       <p class="direct">ou <a id="direct" href="#">falar com a gente direto →</a></p>
@@ -133,12 +158,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="q-sub">Passo 2 de 2 · é só isso 😉</p>
 
       <div class="certs" id="exps">
-        <a class="cert span2" data-exp="Já trabalhei em banco">Já trabalhei em <b>banco</b></a>
-        <a class="cert span2" data-exp="Já trabalhei em corretora">Já trabalhei em <b>corretora</b></a>
-        <a class="cert span2" data-exp="Nunca trabalhei no mercado financeiro">Nunca trabalhei no mercado financeiro</a>
+        <a class="cert span2" data-exp="banco">Já trabalhei em <b>banco</b></a>
+        <a class="cert span2" data-exp="corretora">Já trabalhei em <b>corretora</b></a>
+        <a class="cert span2" data-exp="nenhuma">Nunca trabalhei no mercado financeiro</a>
       </div>
 
       <p class="direct">ou <a id="skip2" href="#">pular essa →</a></p>
+    </div>
+
+    <!-- STEP 3: dados de contato -->
+    <div id="step3" hidden>
+      <div class="center">
+        <span class="kicker">Falta só isso</span>
+        <h1>Pra onde mandamos a <span class="grad">sua vaga</span>?</h1>
+      </div>
+
+      <form id="leadForm" novalidate>
+        <div class="field">
+          <label for="f-nome">Primeiro nome</label>
+          <input id="f-nome" name="nome" type="text" autocomplete="given-name"
+                 placeholder="Como te chamamos?" maxlength="80" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Melhor e-mail</label>
+          <input id="f-email" name="email" type="email" autocomplete="email"
+                 inputmode="email" placeholder="voce@email.com" maxlength="160" required>
+        </div>
+        <div class="field">
+          <label for="f-fone">Telefone (WhatsApp)</label>
+          <input id="f-fone" name="fone" type="tel" autocomplete="tel"
+                 inputmode="tel" placeholder="(11) 99999-9999" maxlength="24" required>
+        </div>
+
+        <label class="consent">
+          <input id="f-lgpd" type="checkbox" required>
+          <span>Autorizo contato por WhatsApp e e-mail pela FinHire e Você Bancário.
+          <a href="/privacidade/" target="_blank" rel="noopener">Política de privacidade</a>.</span>
+        </label>
+
+        <div id="cf-turnstile"></div>
+
+        <p class="promise">
+          Após confirmar aguarde que vamos te redirecionar para o nosso WhatsApp.
+          Te daremos acesso aos materiais da vaga via App Advisor PRO, da @vocebancario
+        </p>
+
+        <button class="btn-go" id="f-submit" type="submit">Confirmar e falar no WhatsApp →</button>
+        <p class="form-err" id="f-err"></p>
+      </form>
     </div>
 
     <div class="foot">
@@ -151,107 +218,193 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 (function(){
   "use strict";
-  // WhatsApp central da escola.
-  var PHONE = "5511991869191";
-  // slug (?c=) -> { rede: p/ a saudação na página, msg: frase de origem no WhatsApp }.
-  // Tokens fixos pro Kommo parsear. Adicionar uma origem nova = 1 linha aqui + 1 atalho /wvagas-*.
-  var ORIGENS = {
-    // --- TikTok ---
-    "tktk-vb":        { rede:"TikTok",    msg:"Vim pelo TikTok @vocebancario" },
-    "tktk-vba":       { rede:"TikTok",    msg:"Vim pelo TikTok @vocebancaria" },
-    "tktk-finhirebr": { rede:"TikTok",    msg:"Vim pelo TikTok @finhirebr" },
-    // --- Instagram ---
-    "ig-vb":          { rede:"Instagram", msg:"Vim pelo Instagram @vocebancario" },
-    "ig-vba":         { rede:"Instagram", msg:"Vim pelo Instagram @vocebancaria" },
-    "ig-finhirebr":   { rede:"Instagram", msg:"Vim pelo Instagram @finhirebr" },
-    // --- LinkedIn (por pessoa/conta) ---
-    "in-rd":          { rede:"LinkedIn",  msg:"Vim pelo LinkedIn do Prof. Rodrigo" },
-    "in-vb":          { rede:"LinkedIn",  msg:"Vim pelo LinkedIn da Você Bancário" },
-    "in-fh":          { rede:"LinkedIn",  msg:"Vim pelo LinkedIn da FinHire" },
-    "in-sd":          { rede:"LinkedIn",  msg:"Vim pelo LinkedIn do Sandro" },
-    // --- Indicações ---
-    "ind-rd":         { rede:"indicação", msg:"Indicado pelo Prof. Rodrigo" },
-    "ind-membro":     { rede:"indicação", msg:"Indicado por um membro" },
-    "ind-rc":         { rede:"indicação", msg:"Indicado por Recrutador" },
-    "ind-rca":        { rede:"indicação", msg:"Indicado por Recrutadora" },
-    // --- Telegram (aceita os slugs tlg-* e telegram-*) ---
-    "tlg-vb":       { rede:"Telegram", msg:"Vim pelo Telegram @vocebancario" },
-    "telegram-vb":  { rede:"Telegram", msg:"Vim pelo Telegram @vocebancario" },
-    "tlg-grp":      { rede:"Telegram", msg:"Vim pelos grupos do Telegram" },
-    "telegram-grp": { rede:"Telegram", msg:"Vim pelos grupos do Telegram" },
-    // --- Genéricos (compat com o 1º lote de links) ---
-    "tktk":  { rede:"TikTok",      msg:"Vim pelo TikTok @finhirebr" },
-    "ig":    { rede:"Instagram",   msg:"Vim pelo Instagram @finhirebr" },
-    "in":    { rede:"LinkedIn",    msg:"Vim pelo LinkedIn @finhirebr" },
-    "fb":     { rede:"Facebook",    msg:"Vim pelo Facebook @finhirebr" },
-    "fb-grp": { rede:"Facebook",    msg:"Vim pelos grupos/canais do Facebook" },
-    "mail":  { rede:"e-mail",      msg:"Vim pelo E-mail" },
-    "adpro": { rede:"Advisor PRO", msg:"Vim pelo Portal Advisor PRO" },
-    "wt":    { rede:"WhatsApp",    msg:"Vim pelo WhatsApp" },
-    "wt-vb": { rede:"WhatsApp",    msg:"Vim pelo WhatsApp dos grupos VB" }
+
+  // ===========================================================================
+  // Funil de vagas FinHire.
+  //
+  // Antes: o quiz montava um link wa.me com o numero chumbado aqui e mandava a
+  // pessoa embora. Quem nao clicava sumia sem deixar rastro.
+  //
+  // Agora: quiz -> formulario -> POST no ATS -> o ATS devolve pra qual numero
+  // redirecionar (configuravel no admin, sem publicar o site de novo). O lead
+  // fica salvo mesmo se a pessoa desistir depois de confirmar.
+  // ===========================================================================
+
+  var API = "https://app.finhire.com.br/api/public/cadastro";
+
+  // Turnstile (anti-spam). Site key e' publica. Enquanto estiver vazia o
+  // widget nao renderiza e o servidor aceita sem captcha — ligar os dois
+  // lados juntos: esta chave aqui e TURNSTILE_SECRET_KEY no Cloud.
+  var TURNSTILE_SITE_KEY = "";
+
+  // slug (?c=) -> rede, usado so' na saudacao da pagina. O rotulo que vai pra
+  // mensagem do WhatsApp e pro Hub e' resolvido no servidor, fonte unica.
+  var REDES = {
+    "tktk-vb":"TikTok","tktk-vba":"TikTok","tktk-finhirebr":"TikTok","tktk":"TikTok",
+    "ig-vb":"Instagram","ig-vba":"Instagram","ig-finhirebr":"Instagram","ig":"Instagram",
+    "in-rd":"LinkedIn","in-vb":"LinkedIn","in-fh":"LinkedIn","in-sd":"LinkedIn","in":"LinkedIn",
+    "ind-rd":"indicação","ind-membro":"indicação","ind-rc":"indicação","ind-rca":"indicação",
+    "tlg-vb":"Telegram","telegram-vb":"Telegram","tlg-grp":"Telegram","telegram-grp":"Telegram",
+    "fb":"Facebook","fb-grp":"Facebook","mail":"e-mail","adpro":"Advisor PRO",
+    "wt":"WhatsApp","wt-vb":"WhatsApp"
   };
 
   function getParam(name){
     var m = new RegExp("[?&]" + name + "=([^&]+)").exec(window.location.search);
     return m ? decodeURIComponent(m[1].replace(/\+/g, " ")) : null;
   }
+  function $(id){ return document.getElementById(id); }
 
-  var slug = (getParam("c") || "").toLowerCase().trim();
-  var ref  = getParam("ref");  // texto livre opcional (ex: nome do recrutador, campanha)
-  var origem = ORIGENS[slug] || (slug ? { rede:null, msg:"Vim pelo " + slug } : null);
+  // Sem ?c= o lead e' "direto" — canal real e contabilizavel, em vez de buraco
+  // no relatorio de origem.
+  var canal = (getParam("c") || "direto").toLowerCase().trim();
+  var ref   = getParam("ref");
+  var vaga  = getParam("vaga");
+  var rede  = REDES[canal] || null;
 
-  // Saudação amigável na página.
-  var greet = document.getElementById("greet");
-  if (origem) {
-    if (origem.rede === "indicação") greet.innerHTML = "Que bom te ver por aqui! 👋";
-    else if (origem.rede)            greet.innerHTML = "Você veio pelo <b>" + origem.rede + "</b> 👋";
+  var greet = $("greet");
+  if (canal === "direto")            greet.innerHTML = "Que bom te ver por aqui! 👋";
+  else if (rede === "indicação")     greet.innerHTML = "Que bom te ver por aqui! 👋";
+  else if (rede)                     greet.innerHTML = "Você veio pelo <b>" + rede + "</b> 👋";
+
+  var step1 = $("step1"), step2 = $("step2"), step3 = $("step3");
+  var chosenCert = null, chosenExp = null;
+
+  function showStep(el){
+    step1.hidden = true; step2.hidden = true; step3.hidden = true;
+    el.hidden = false;
+    if (window.scrollTo) window.scrollTo(0, 0);
   }
 
-  // Monta a mensagem do WhatsApp. Separador " | " e tokens fixos p/ a automação do Kommo parsear.
-  function waLink(cert, exp){
-    var txt = "VAGAS FINHIRE";
-    if (origem) {
-      txt += " | " + origem.msg;
-      if (ref) txt += " (" + ref + ")";
-    }
-    if (cert) txt += " | Certificação: " + cert;
-    if (exp)  txt += " | Experiência: " + exp;
-    return "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(txt);
+  function goToForm(){
+    showStep(step3);
+    renderTurnstile();
+    var nome = $("f-nome");
+    if (nome && nome.focus) { try { nome.focus({ preventScroll:true }); } catch(e){ nome.focus(); } }
   }
-  function go(url){ window.location.href = url; }
 
-  // Quiz de 2 passos: 1) certificação -> 2) experiência no MF -> WhatsApp.
-  var step1 = document.getElementById("step1");
-  var step2 = document.getElementById("step2");
-  var chosenCert = null;
-
-  // Passo 1: escolher certificação -> guarda e revela o passo 2.
+  // Passo 1: certificacao -> passo 2.
   var certBtns = document.querySelectorAll("#certs .cert");
   for (var i = 0; i < certBtns.length; i++) {
-    certBtns[i].addEventListener("click", function (e) {
+    certBtns[i].addEventListener("click", function(e){
       e.preventDefault();
       chosenCert = this.getAttribute("data-cert");
-      step1.hidden = true;
-      step2.hidden = false;
-      if (window.scrollTo) window.scrollTo(0, 0);
+      showStep(step2);
     });
   }
 
-  // Passo 2: escolher experiência -> WhatsApp com canal + cert + experiência.
+  // Passo 2: experiencia -> formulario.
   var expBtns = document.querySelectorAll("#exps .cert");
   for (var j = 0; j < expBtns.length; j++) {
-    expBtns[j].addEventListener("click", function (e) {
+    expBtns[j].addEventListener("click", function(e){
       e.preventDefault();
-      go(waLink(chosenCert, this.getAttribute("data-exp")));
+      chosenExp = this.getAttribute("data-exp");
+      goToForm();
     });
   }
 
-  // Atalhos de escape: "falar direto" (passo 1, pula tudo) e "pular essa" (passo 2, sem experiência).
-  document.getElementById("direct").addEventListener("click", function (e) {
-    e.preventDefault(); go(waLink(null, null));
-  });
-  document.getElementById("skip2").addEventListener("click", function (e) {
-    e.preventDefault(); go(waLink(chosenCert, null));
+  // Atalhos: todos passam pelo formulario — a captura do lead nao e' opcional.
+  $("direct").addEventListener("click", function(e){ e.preventDefault(); goToForm(); });
+  $("skip2").addEventListener("click",  function(e){ e.preventDefault(); goToForm(); });
+
+  // --- Turnstile (render sob demanda, so' quando a chave estiver setada) ----
+  var turnstileReady = false;
+  function renderTurnstile(){
+    if (!TURNSTILE_SITE_KEY || turnstileReady) return;
+    if (!window.turnstile) {
+      var sc = document.createElement("script");
+      sc.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      sc.async = true; sc.defer = true;
+      sc.onload = renderTurnstile;
+      document.head.appendChild(sc);
+      return;
+    }
+    window.turnstile.render("#cf-turnstile", { sitekey: TURNSTILE_SITE_KEY, theme: "dark" });
+    turnstileReady = true;
+  }
+  function captchaToken(){
+    try { return window.turnstile ? (window.turnstile.getResponse() || "") : ""; }
+    catch(e){ return ""; }
+  }
+
+  // --- Envio ---------------------------------------------------------------
+  var form = $("leadForm"), btn = $("f-submit"), errBox = $("f-err");
+
+  function showErr(msg){ errBox.textContent = msg; errBox.className = "form-err on"; }
+  function clearErr(){ errBox.textContent = ""; errBox.className = "form-err"; }
+
+  function markInvalid(el, bad){
+    if (bad) el.setAttribute("aria-invalid","true"); else el.removeAttribute("aria-invalid");
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    clearErr();
+
+    var nome  = $("f-nome"), email = $("f-email"), fone = $("f-fone"), lgpd = $("f-lgpd");
+    var vNome = nome.value.trim(), vEmail = email.value.trim(), vFone = fone.value.trim();
+
+    var badNome  = vNome.length < 2;
+    var badEmail = !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(vEmail);
+    // 10 = fixo com DDD, 11 = celular. Sem DDD nao da' pra ligar de volta.
+    var badFone  = vFone.replace(/\D/g,"").length < 10;
+    markInvalid(nome, badNome); markInvalid(email, badEmail); markInvalid(fone, badFone);
+
+    if (badNome)  return showErr("Digite seu primeiro nome.");
+    if (badEmail) return showErr("Confira o e-mail — parece incompleto.");
+    if (badFone)  return showErr("Digite o WhatsApp com DDD.");
+    if (!lgpd.checked) return showErr("Precisamos da sua autorização para entrar em contato.");
+
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+
+    var payload = {
+      full_name: vNome,
+      email: vEmail,
+      phone: vFone,
+      channel: canal,
+      ref: ref || null,
+      certification: chosenCert,
+      bank_experience: chosenExp,
+      vaga_slug: vaga || null,
+      source_url: window.location.href,
+      consent_lgpd: true,
+      captcha_token: captchaToken()
+    };
+
+    fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res){
+      return res.json().catch(function(){ return {}; }).then(function(body){
+        return { ok: res.ok, body: body };
+      });
+    })
+    .then(function(r){
+      if (!r.ok || !r.body || !r.body.redirect) {
+        throw new Error((r.body && r.body.error) || "Não conseguimos enviar agora.");
+      }
+      try {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "lead_vagas_enviado",
+          canal: canal, certificacao: chosenCert, experiencia: chosenExp
+        });
+      } catch(e){}
+
+      var digits = String(r.body.redirect.phone || "").replace(/\D/g,"");
+      var texto  = encodeURIComponent(r.body.redirect.message || "VAGAS FINHIRE");
+      window.location.href = "https://wa.me/" + digits + "?text=" + texto;
+    })
+    .catch(function(err){
+      btn.disabled = false;
+      btn.textContent = "Confirmar e falar no WhatsApp →";
+      // Captcha so' pode ser usado uma vez — reseta pra permitir nova tentativa.
+      try { if (window.turnstile) window.turnstile.reset(); } catch(e){}
+      showErr((err && err.message) || "Não conseguimos enviar agora. Tente de novo.");
+    });
   });
 })();
 </script>
