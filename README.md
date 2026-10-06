@@ -10,8 +10,8 @@ Dois públicos, duas portas — medição unificada por GTM.
 | `finhire.com.br` (`index.html`) | **Site institucional B2B** — Talent Solutions (copy final) |
 | `finhire.com.br/vagas/` | **Funil de candidato** — quiz (estado/cidade/experiência/disponibilidade) |
 | `finhire.com.br/wvagas-*` | ~27 **links de rastreio** por canal → `/vagas/?c=<canal>` (IG/FB/Telegram/TikTok/LinkedIn/mail…) |
-| `finhire.com.br/deck.html` | **Deck público** — 11 slides A4 paisagem (sem histórico C6) |
-| `/deck-completo.html` (não linkado) | **Deck completo** — 12 slides, com histórico C6 (enviar só ao C6) |
+| `finhire.com.br/deck.html` | **Deck público** — 13 slides A4 paisagem (sem histórico C6) |
+| `/deck-completo.html` (não linkado) | **Deck completo** — 14 slides, com histórico C6 (enviar só ao C6) |
 
 ## Medição
 **Google Tag Manager `GTM-WM593476`** em todas as páginas — inclusive no institucional (enxertado na reconciliação).
